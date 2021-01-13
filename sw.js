@@ -2,6 +2,7 @@ const staticCacheName = 'site-static-v0.1.0';
 const assets = [
     './',
     './index.html',
+    './js/ui.js',
     './js/app.js',
     './js/graph.js',
     './js/vendor/wNumb.min.js',
