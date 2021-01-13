@@ -1,0 +1,165 @@
+/* colours */
+
+ :root {
+    --primary: rgb(255, 255, 255);
+    --secondary: rgb(255, 0, 0);
+    --title: rgb(0, 0, 0);
+}
+
+nav {
+    background: var(--primary);
+    border-bottom: 10px solid var(--secondary);
+}
+
+nav a {
+    color: var(--title);
+}
+
+nav a span {
+    font-weight: bold;
+}
+
+
+/* debbug */
+
+.container {
+    /* border: 1px solid black; */
+}
+
+.row {
+    margin-bottom: 10px;
+    /* border: 1px solid rgb(255, 0, 0); */
+}
+
+
+/* Weight-element */
+
+#weight-element {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#weight-element-ballast {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 20px;
+}
+
+
+/* Icon */
+
+#icon-element {
+    margin: 0px;
+    margin-left: 0px;
+    padding: 0px;
+}
+
+
+/* Slider */
+
+.noUi-horizontal {
+    height: 10px;
+}
+
+.noUi-pips-horizontal {
+    font-size: 0.75rem
+}
+
+.noUi-marker-horizontal.noUi-marker-large {
+    height: 0.75rem;
+}
+
+.noUi-base .noUi-handle::before {
+    content: none;
+}
+
+.noUi-base .noUi-handle::after {
+    display: none;
+}
+
+.noUi-horizontal .noUi-handle {
+    box-shadow: none;
+    background: red;
+    border: none;
+    cursor: ew-resize;
+    border-radius: 1px;
+    width: 2px;
+    height: 28px;
+    right: -1px;
+    top: -9px;
+}
+
+
+/* input */
+
+#input-element {
+    padding-left: 1rem;
+    position: relative;
+}
+
+#unit {
+    position: absolute;
+    height: auto;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+input[type="number"]:not(.browser-default) {
+    margin: 0;
+    font-size: 14px;
+}
+
+input[type="number"]:not(.browser-default):focus:not([readonly]) {
+    /* #input-fuel:focus { */
+    /* background: red; */
+    box-shadow: none;
+    border-color: red;
+}
+
+
+/* results element */
+
+#result-element {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+#result-element>.container {
+    width: 100%;
+}
+
+
+/* SWITCH */
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #F1F1F1
+}
+
+input[type=checkbox]:checked:not(:disabled)~.lever:active::before {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+#mobile-menu {
+    color: black;
+    line-height: 1.5;
+}
+
+
+/* despcription */
+
+.description {
+    font-weight: bold;
+}
+
+
+/* version */
+
+.version {
+    font-size: 0.75rem;
+}
