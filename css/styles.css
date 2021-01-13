@@ -70,23 +70,27 @@ nav a span {
 }
 
 .noUi-base .noUi-handle::before {
-    content: none;
+    /* content: none; */
+    background: rgb(255, 0, 0);
+    height: 20px;
+    width: 2px;
 }
 
 .noUi-base .noUi-handle::after {
-    display: none;
+    /* display: none; */
+    background: red;
+    height: 20px;
+    width: 2px;
 }
 
 .noUi-horizontal .noUi-handle {
     box-shadow: none;
-    background: red;
+    background: none;
     border: none;
     cursor: ew-resize;
-    border-radius: 1px;
-    width: 2px;
-    height: 28px;
-    right: -1px;
-    top: -9px;
+    /* width: 2px; */
+    /* height: 28px; */
+    top: -12px;
 }
 
 
