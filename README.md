@@ -6,6 +6,7 @@ Copright (c) Parmonom
 All rights reserved.
 
 Based on:
-D3.js, BSD licence
-Materialize, MIT licence
+D3.js, BSD licence;
+Materialize, MIT licence;
+nouislider, MIT licence;
 
