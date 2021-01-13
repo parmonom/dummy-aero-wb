@@ -114,7 +114,7 @@ svG
     .attr("y", 6)
     .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
-    .text("Weight");
+    .text("Weight (kg)");
 
 // Add marker weight and balance
 var point = svG.selectAll("whatever")
