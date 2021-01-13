@@ -1,6 +1,6 @@
 {
-    "name": "DUMMY Weight and balance",
-    "short_name": "DUMMY WB",
+    "name": "DUMMY Aero Weight and balance",
+    "short_name": "DUMMY Aero WB",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#f5f5f5",
