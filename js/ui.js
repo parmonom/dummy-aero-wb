@@ -51,7 +51,7 @@ noUiSlider.create(sliderFuel, {
         // mode: 'range',
         mode: 'values',
         values: [0, 30, 60, 90, 120, 150],
-        density: 6,
+        density: 7,
     },
 });
 
@@ -81,16 +81,12 @@ noUiSlider.create(sliderPilot, {
         'min': 0,
         'max': 150
     },
-    // pips: {
-    //     mode: 'positions',
-    //     values: [60 / 150 * 100, 60, 80, 100],
-    //     density: 4
-    // },
+
     pips: {
         // mode: 'range',
         mode: 'values',
         values: [60, 90, 120, 150],
-        density: 6,
+        density: 7,
     },
 });
 
@@ -123,7 +119,7 @@ noUiSlider.create(sliderPassenger, {
         // mode: 'range',
         mode: 'values',
         values: [0, 30, 60, 90, 120, 150],
-        density: 6,
+        density: 7,
     },
 });
 
