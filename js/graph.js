@@ -22,9 +22,9 @@ var momentFormat = wNumb({
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // VARS 
 var xMin = 14;
-var xMax = 30;
-var yMin = 300;
-var yMax = 800;
+var xMax = 35;
+var yMin = 325;
+var yMax = 650;
 
 // weightDefault
 var weightEmpty = 300; //kg
@@ -33,9 +33,9 @@ var weightEmpty = 300; //kg
 var initMarker = [{ x: 26, y: 500 }]
 
 var profilEnvelope = [
-    { x: 16, y: 350 }, { x: 16, y: 750 },
-    { x: 28, y: 750 }, { x: 28, y: 350 },
-    { x: 16, y: 350 }
+    { x: 17.5, y: 385 }, { x: 17.5, y: 600 },
+    { x: 31.5, y: 600 }, { x: 31.5, y: 385 },
+    { x: 17.5, y: 385 }
 ];
 
 
