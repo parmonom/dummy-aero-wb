@@ -38,6 +38,10 @@ var profilEnvelope = [
     { x: 17.5, y: 385 }
 ];
 
+var profilWeight = [
+    { x: 15, y: 385 }, { x: 18, y: 600 },
+];
+
 
 // moment
 // var momentEmpty = 112491.5; //kgmm
@@ -142,6 +146,20 @@ var pointZF = svG.selectAll("whatever")
     .attr("fill", 'orange')
     .attr("r", 2.5)
 
+
+// Add weight line
+var lineWeight = svG
+    .append("path")
+    .datum(profilWeight)
+    .attr("fill", "none")
+    .attr("stroke", "black")
+    .attr("stroke-width", .75)
+    .attr("d", d3.line()
+        .x(function(d) { return x(d.x) })
+        .y(function(d) { return y(d.y) })
+    )
+
+    
 // Add envelope
 svG
     .append("path")
@@ -157,9 +175,12 @@ svG
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // UPDATE FIGURE
-var idWeightOutput = document.getElementById('weight-output');
-var idMomentOutput = document.getElementById('moment-output');
-var idCenterageOutput = document.getElementById('centerage-output');
+var idWeightOutputTO = document.getElementById('weightTO-output');
+var idMomentOutputTO = document.getElementById('momentTO-output');
+var idCenterageOutputTO = document.getElementById('centerageTO-output');
+var idWeightOutputZF = document.getElementById('weightZF-output');
+var idMomentOutputZF = document.getElementById('momentZF-output');
+var idCenterageOutputZF = document.getElementById('centerageZF-output');
 
 function updateFigure() {
     var weightTO =
@@ -199,9 +220,13 @@ function updateFigure() {
     var centerageZF = (armZF - refmac) / mac;
 
     // console.log(TOweight);
-    idWeightOutput.innerHTML = "Total weight: " + weightFormat.to(weightTO);
-    idCenterageOutput.innerHTML = "Centerage: " + centerageFormat.to(centerageTO * 100);
-    idMomentOutput.innerHTML = "Total moment: " + momentFormat.to(momentTO / 1);
+    idWeightOutputTO.innerHTML = "TO Weight: " + weightFormat.to(weightTO);
+    idCenterageOutputTO.innerHTML = "TO Centerage: " + centerageFormat.to(centerageTO * 100);
+    idMomentOutputTO.innerHTML = "To Moment: " + momentFormat.to(momentTO / 1000);
+
+    idWeightOutputZF.innerHTML = "ZF Weight: " + weightFormat.to(weightZF);
+    idCenterageOutputZF.innerHTML = "ZF Centerage: " + centerageFormat.to(centerageZF * 100);
+    idMomentOutputZF.innerHTML = "ZF Moment: " + momentFormat.to(momentZF / 1000);
 
     dataTO = [{ x: centerageTO * 100, y: weightTO }];
     pointTO
@@ -215,4 +240,13 @@ function updateFigure() {
         .data(dataZF)
         .attr("cx", function(d) { return x(d.x); })
         .attr("cy", function(d) { return y(d.y); })
+
+    dataLineWeight = [{ x: centerageTO * 100, y: weightTO }, { x: centerageZF * 100, y: weightZF }];
+    lineWeight
+        .datum(dataLineWeight)
+        .attr("d", d3.line()
+            .x(function(d) { return x(d.x) })
+            .y(function(d) { return y(d.y) })
+        )
+
 }

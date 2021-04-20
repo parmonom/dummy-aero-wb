@@ -134,6 +134,11 @@ input[type="number"]:not(.browser-default):focus:not([readonly]) {
     width: 100%;
 }
 
+.container p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 
 /* SWITCH */
 
