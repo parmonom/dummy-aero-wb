@@ -11,6 +11,12 @@ var centerageFormat = wNumb({
     suffix: ' %'
 });
 
+var momentFormat = wNumb({
+    mark: '.',
+    decimals: 1,
+    suffix: ' kg.m'
+});
+
 
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
@@ -34,12 +40,12 @@ var profilEnvelope = [
 
 
 // moment
-var momentEmpty = 112491.5; //kgmm
+// var momentEmpty = 112491.5; //kgmm
 
 // arms
-var armEmpty = momentEmpty / weightEmpty //mm
+// var armEmpty = momentEmpty / weightEmpty //mm
 var armFuel = 689 //mm
-var armPilot = 348 //mm
+var armPilot = 392.5 //mm
 var armPassenger = 1273 //mm
 var armBaggage = 1894 //mm
 var armRearBallast = 2094 //mm
@@ -117,13 +123,23 @@ svG
     .text("Weight (kg)");
 
 // Add marker weight and balance
-var point = svG.selectAll("whatever")
+var pointTO = svG.selectAll("whatever")
     .data(initMarker)
     .enter()
     .append("circle")
     .attr("cx", function(d) { return x(d.x) })
     .attr("cy", function(d) { return y(d.y) })
     .attr("fill", 'red')
+    .attr("r", 2.5)
+
+// Add marker weight and balance
+var pointZF = svG.selectAll("whatever")
+    .data(initMarker)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) { return x(d.x) })
+    .attr("cy", function(d) { return y(d.y) })
+    .attr("fill", 'orange')
     .attr("r", 2.5)
 
 // Add envelope
@@ -142,34 +158,61 @@ svG
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // UPDATE FIGURE
 var idWeightOutput = document.getElementById('weight-output');
+var idMomentOutput = document.getElementById('moment-output');
 var idCenterageOutput = document.getElementById('centerage-output');
 
 function updateFigure() {
-    var weightTotal =
+    var weightTO =
         // weightEmpty +
-        parseFloat(inputEmpty.value) +
+        parseFloat(inputEmptyWeight.value) +
         parseFloat(inputFuel.value) * 0.72 +
         parseFloat(inputPilot.value) +
         parseFloat(inputPassenger.value) +
         parseFloat(inputBaggage.value);
 
-    var momentTotal =
+    var weightZF =
+        // weightEmpty +
+        parseFloat(inputEmptyWeight.value) +
+        parseFloat(inputPilot.value) +
+        parseFloat(inputPassenger.value) +
+        parseFloat(inputBaggage.value);
+
+    var momentTO =
         // weightEmpty * armEmpty +
-        parseFloat(inputEmpty.value) * armEmpty +
+        parseFloat(inputStartMoment.value) +
         parseFloat(inputFuel.value) * armFuel * 0.72 +
         parseFloat(inputPilot.value) * armPilot +
         parseFloat(inputPassenger.value) * armPassenger +
         parseFloat(inputBaggage.value) * armBaggage;
 
-    var armTotal = momentTotal / weightTotal;
-    var centerage = (armTotal - refmac) / mac;
-    // console.log(weightTotal);
-    idWeightOutput.innerHTML = "Total weight: " + weightFormat.to(weightTotal);
-    idCenterageOutput.innerHTML = "Centerage: " + centerageFormat.to(centerage * 100);
+    var momentZF =
+        // weightEmpty * armEmpty +
+        parseFloat(inputStartMoment.value) +
+        parseFloat(inputPilot.value) * armPilot +
+        parseFloat(inputPassenger.value) * armPassenger +
+        parseFloat(inputBaggage.value) * armBaggage;
 
-    dataPoint = [{ x: centerage * 100, y: weightTotal }];
-    point
-        .data(dataPoint)
+    var armTO = momentTO / weightTO;
+    var centerageTO = (armTO - refmac) / mac;
+
+    var armZF = momentZF / weightZF;
+    var centerageZF = (armZF - refmac) / mac;
+
+    // console.log(TOweight);
+    idWeightOutput.innerHTML = "Total weight: " + weightFormat.to(weightTO);
+    idCenterageOutput.innerHTML = "Centerage: " + centerageFormat.to(centerageTO * 100);
+    idMomentOutput.innerHTML = "Total moment: " + momentFormat.to(momentTO / 1);
+
+    dataTO = [{ x: centerageTO * 100, y: weightTO }];
+    pointTO
+        .data(dataTO)
+        .attr("cx", function(d) { return x(d.x); })
+        .attr("cy", function(d) { return y(d.y); })
+
+    dataZF = [{ x: centerageZF * 100, y: weightZF }];
+
+    pointZF
+        .data(dataZF)
         .attr("cx", function(d) { return x(d.x); })
         .attr("cy", function(d) { return y(d.y); })
 }

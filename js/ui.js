@@ -15,7 +15,8 @@ var baggageWeightDefault = 0;
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // GET ID
 // Input
-var inputEmpty = document.getElementById('input-empty');
+var inputEmptyWeight = document.getElementById('input-empty-weight');
+var inputStartMoment = document.getElementById('input-start-moment');
 var inputFuel = document.getElementById('input-fuel');
 var inputPilot = document.getElementById('input-pilot');
 var inputPassenger = document.getElementById('input-passenger');
@@ -30,7 +31,15 @@ var sliderBaggage = document.getElementById('slider-baggage');
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // EMPTY WEIGHT
 // Synchro with the input
-inputEmpty.addEventListener('change', function() {
+inputEmptyWeight.addEventListener('change', function() {
+    // sliderFuel.noUiSlider.set([this.value, null]);
+    updateFigure();
+});
+
+// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// START MOMENT
+// Synchro with the input
+inputStartMoment.addEventListener('change', function() {
     // sliderFuel.noUiSlider.set([this.value, null]);
     updateFigure();
 });
@@ -79,14 +88,14 @@ noUiSlider.create(sliderPilot, {
     padding: [55],
     range: {
         'min': 0,
-        'max': 150
+        'max': 110
     },
 
     pips: {
         // mode: 'range',
         mode: 'values',
-        values: [60, 90, 120, 150],
-        density: 7,
+        values: [60, 70, 80, 90, 100, 110],
+        density: 5,
     },
 });
 
@@ -113,13 +122,13 @@ noUiSlider.create(sliderPassenger, {
     step: 1,
     range: {
         'min': 0,
-        'max': 150
+        'max': 110
     },
     pips: {
         // mode: 'range',
         mode: 'values',
-        values: [0, 30, 60, 90, 120, 150],
-        density: 7,
+        values: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+        density: 5,
     },
 });
 
