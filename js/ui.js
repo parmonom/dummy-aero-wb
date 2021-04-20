@@ -28,6 +28,9 @@ var sliderPilot = document.getElementById('slider-pilot');
 var sliderPassenger = document.getElementById('slider-passenger');
 var sliderBaggage = document.getElementById('slider-baggage');
 
+// switch
+var switchPosition = 1; 
+
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // EMPTY WEIGHT
 // Synchro with the input
@@ -175,3 +178,21 @@ sliderBaggage.noUiSlider.on('update', function(values, handle) {
 inputBaggage.addEventListener('change', function() {
     sliderBaggage.noUiSlider.set([this.value, null]);
 });
+
+// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// SWITCH BALLAST
+document.addEventListener('DOMContentLoaded', function () {
+    var checkbox = document.querySelector('input[type="checkbox"]');
+  
+    checkbox.addEventListener('change', function () {
+      if (checkbox.checked) {
+        // console.log('Checked REAR');
+        switchPosition = 0;
+        updateFigure()
+      } else {
+        // console.log('Not checked FRONT');
+        switchPosition = 1;
+        updateFigure()
+      }
+    });
+  });

@@ -42,22 +42,28 @@ var profilWeight = [
     { x: 15, y: 385 }, { x: 18, y: 600 },
 ];
 
+//weight
+var ballastWeight = 6;
 
 // moment
-// var momentEmpty = 112491.5; //kgmm
+var ballastFrontMoment = -1466*ballastWeight;
+var ballastRearMoment = 2094*ballastWeight;
 
 // arms
-// var armEmpty = momentEmpty / weightEmpty //mm
-var armFuel = 689 //mm
-var armPilot = 392.5 //mm
-var armPassenger = 1273 //mm
-var armBaggage = 1894 //mm
-var armRearBallast = 2094 //mm
-var armFrontBallast = -1466 //mm
+var armFuel = 689; //mm
+var armPilot = 392.5; //mm
+var armPassenger = 1273; //mm
+var armBaggage = 1894; //mm
+var armRearBallast = 2094; //mm
+var armFrontBallast = -1466; //mm
 
 // Default centrage
-var refmac = 114 //mm
-var mac = 1237 //mm
+var refmac = 114; //mm
+var mac = 1237; //mm
+
+// Ballast position default
+// 1 front / 0 back 
+var ballastPosition = 1;
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // FIGURE
@@ -173,30 +179,35 @@ svG
         .y(function(d) { return y(d.y) })
     )
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// UPDATE FIGURE
+// id text output
 var idWeightOutputTO = document.getElementById('weightTO-output');
 var idMomentOutputTO = document.getElementById('momentTO-output');
 var idCenterageOutputTO = document.getElementById('centerageTO-output');
 var idWeightOutputZF = document.getElementById('weightZF-output');
 var idMomentOutputZF = document.getElementById('momentZF-output');
 var idCenterageOutputZF = document.getElementById('centerageZF-output');
+// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// UPDATE FIGURE
 
 function updateFigure() {
+    switchPosition
+    ballastMoment = switchPosition*ballastFrontMoment + (1-switchPosition)*ballastRearMoment;
     var weightTO =
         // weightEmpty +
         parseFloat(inputEmptyWeight.value) +
         parseFloat(inputFuel.value) * 0.72 +
         parseFloat(inputPilot.value) +
         parseFloat(inputPassenger.value) +
-        parseFloat(inputBaggage.value);
+        parseFloat(inputBaggage.value) + 
+        ballastWeight;
 
     var weightZF =
         // weightEmpty +
         parseFloat(inputEmptyWeight.value) +
         parseFloat(inputPilot.value) +
         parseFloat(inputPassenger.value) +
-        parseFloat(inputBaggage.value);
+        parseFloat(inputBaggage.value) + 
+        ballastWeight;
 
     var momentTO =
         // weightEmpty * armEmpty +
@@ -204,14 +215,16 @@ function updateFigure() {
         parseFloat(inputFuel.value) * armFuel * 0.72 +
         parseFloat(inputPilot.value) * armPilot +
         parseFloat(inputPassenger.value) * armPassenger +
-        parseFloat(inputBaggage.value) * armBaggage;
+        parseFloat(inputBaggage.value) * armBaggage + 
+        ballastMoment;
 
     var momentZF =
         // weightEmpty * armEmpty +
         parseFloat(inputStartMoment.value) +
         parseFloat(inputPilot.value) * armPilot +
         parseFloat(inputPassenger.value) * armPassenger +
-        parseFloat(inputBaggage.value) * armBaggage;
+        parseFloat(inputBaggage.value) * armBaggage + 
+        ballastMoment;
 
     var armTO = momentTO / weightTO;
     var centerageTO = (armTO - refmac) / mac;
