@@ -44,6 +44,7 @@ var profilWeight = [
 
 //weight
 var ballastWeight = 6;
+var pilotWeightLimit = 80
 
 // moment
 var ballastFrontMoment = -1466*ballastWeight;
@@ -51,7 +52,8 @@ var ballastRearMoment = 2094*ballastWeight;
 
 // arms
 var armFuel = 689; //mm
-var armPilot = 392.5; //mm
+var armPilotLight = 369; //mm
+var armPilotHeavy = 416; //mm
 var armPassenger = 1273; //mm
 var armBaggage = 1894; //mm
 var armRearBallast = 2094; //mm
@@ -190,8 +192,11 @@ var idCenterageOutputZF = document.getElementById('centerageZF-output');
 // UPDATE FIGURE
 
 function updateFigure() {
-    switchPosition
     ballastMoment = switchPosition*ballastFrontMoment + (1-switchPosition)*ballastRearMoment;
+    var localArmPilot = armPilotLight;
+    if (parseFloat(inputPilot.value) > pilotWeightLimit) {
+        localArmPilot = armPilotHeavy;
+    }
     var weightTO =
         // weightEmpty +
         parseFloat(inputEmptyWeight.value) +
@@ -213,7 +218,7 @@ function updateFigure() {
         // weightEmpty * armEmpty +
         parseFloat(inputStartMoment.value) +
         parseFloat(inputFuel.value) * armFuel * 0.72 +
-        parseFloat(inputPilot.value) * armPilot +
+        parseFloat(inputPilot.value) * localArmPilot +
         parseFloat(inputPassenger.value) * armPassenger +
         parseFloat(inputBaggage.value) * armBaggage + 
         ballastMoment;
@@ -221,7 +226,7 @@ function updateFigure() {
     var momentZF =
         // weightEmpty * armEmpty +
         parseFloat(inputStartMoment.value) +
-        parseFloat(inputPilot.value) * armPilot +
+        parseFloat(inputPilot.value) * localArmPilot +
         parseFloat(inputPassenger.value) * armPassenger +
         parseFloat(inputBaggage.value) * armBaggage + 
         ballastMoment;
