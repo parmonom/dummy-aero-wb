@@ -35,14 +35,14 @@
             <div class="col s12 m6" id="main-element">
                 <div class="container"> -->
 
-<!-- Empty weight and moment -->
+        <!-- Empty weight and moment -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
                 <img src="./img/google-icons/airplanemode_active-24px.svg" class="black-text left"> Empty weight
             </div>
             <!-- <div class="col s7 m8" id="slider-element"></div> -->
             <div class="col s2 m3" id="input-element">
-                <input class="center" type="number" id="input-empty-weight" value=300>
+                <input class="center" type="number" id="input-empty-weight" value=330>
                 <span id="unit">kg</span>
             </div>
             <div class="col s2 m3 center" id="icon-element">
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-<!-- Fuel -->
+        <!-- Fuel -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
                 <img src="./img/google-icons/local_gas_station-24px.svg" class="black-text left"> Fuel
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-<!-- Pilot -->
+        <!-- Pilot -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
 
@@ -83,7 +83,7 @@
             </div>
         </div>
 
-<!-- Passenger -->
+        <!-- Passenger -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
                 <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="black-text left"> Passenger
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-<!-- Baggage -->
+        <!-- Baggage -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
                 <img src="./img/google-icons/luggage-24px.svg" class="black-text left"> Baggage
@@ -111,24 +111,24 @@
             </div>
         </div>
 
-<!-- Switch ballast -->
+        <!-- Switch ballast -->
         <div class="row valign-wrapper" id="weight-element-ballast">
             <div class="col s4 m3" id="icon-element">
                 <img src="./img/google-icons/ballast-24px.svg" class="black-text left"> Ballast
             </div>
             <div class="col s7 m8" id="slider-element">
-                <div class="switch floating">
+                <div class="switch">
+                    <span id="rear-label-ballast">Rear</span>
                     <label>
-                  Front
-                  <input type="checkbox">
-                  <span class="lever"></span>
-                  Rear
-                </label>
+                        <input type="checkbox" id="switch-ballast">
+                        <span class="lever"></span>
+                    </label>
+                    <span id="front-label-ballast" style="font-weight: bold; color: black;">Front</span>
                 </div>
             </div>
         </div>
 
-<!-- Graph -->
+        <!-- Graph -->
         <div class="row" id="result-element">
             <div class="container">
                 <div class="row center">
@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row" id="result-element">
             <div class="container">
                 <div class="row center">

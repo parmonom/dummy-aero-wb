@@ -63,10 +63,6 @@ var armFrontBallast = -1466; //mm
 var refmac = 114; //mm
 var mac = 1237; //mm
 
-// Ballast position default
-// 1 front / 0 back 
-var ballastPosition = 1;
-
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // FIGURE
 

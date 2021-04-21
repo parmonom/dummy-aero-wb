@@ -32,7 +32,13 @@ var sliderPassenger = document.getElementById('slider-passenger');
 var sliderBaggage = document.getElementById('slider-baggage');
 
 // switch
-var switchPosition = 1;
+// 1 front / 0 rear
+var switchBallast = document.getElementById("switch-ballast");
+switchBallast.checked = false;
+var switchPosition = 0;
+// labels
+var switchFrontLabel = document.getElementById("front-label-ballast")
+var switchRearLabel = document.getElementById("rear-label-ballast")
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // CREATE SLIDERS
@@ -131,14 +137,27 @@ sliderPilot.noUiSlider.on('update', function (values, handle) {
 sliderPassenger.noUiSlider.on('update', function (values, handle) {
     var value = values[handle];
     inputPassenger.value = Math.round(value);
-    // reduce fuel and baggage admissible with two occupants
+    
+    // if two occupants
     if (value > twoOccupantWeight) {
+        // reduce fuel and baggage admissible with two occupants
         sliderFuel.noUiSlider.updateOptions({
             padding: [0, 50]
         })
         sliderBaggage.noUiSlider.updateOptions({
             padding: [0, 10]
         })
+        // move ballast to front
+        // change font size and color for the adviced value
+        switchFrontLabel.style.fontWeight = "bold"; 
+        switchFrontLabel.style.color = "black"; 
+        switchRearLabel.style.fontWeight = "normal"; 
+        switchRearLabel.style.color = "grey"; 
+        // move switch
+        switchBallast.checked = true;
+        switchPosition = 1;
+
+
     } else {
         sliderFuel.noUiSlider.updateOptions({
             padding: [0, 0]
@@ -146,7 +165,17 @@ sliderPassenger.noUiSlider.on('update', function (values, handle) {
         sliderBaggage.noUiSlider.updateOptions({
             padding: [0, 0]
         })
+        // move ballast to rear
+        // change font size and color for the adviced value
+        switchRearLabel.style.fontWeight = "bold"; 
+        switchRearLabel.style.color = "black"; 
+        switchFrontLabel.style.fontWeight = "normal"; 
+        switchFrontLabel.style.color = "grey"; 
+        // move switch
+        switchBallast.checked = false;
+        switchPosition = 0;
     }
+        
     updateFigure()
 });
 
@@ -199,23 +228,14 @@ inputFuel.addEventListener('change', function () {
     sliderFuel.noUiSlider.set([this.value, null]);
 });
 
-
-
-
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// SWITCH BALLAST
-document.addEventListener('DOMContentLoaded', function () {
-    var checkbox = document.querySelector('input[type="checkbox"]');
-
-    checkbox.addEventListener('change', function () {
-        if (checkbox.checked) {
-            // console.log('Checked REAR');
-            switchPosition = 0;
-            updateFigure()
-        } else {
-            // console.log('Not checked FRONT');
-            switchPosition = 1;
-            updateFigure()
-        }
-    });
+// BALLAST
+switchBallast.addEventListener('change', function () {
+    if (switchBallast.checked) {
+        switchPosition = 1;
+        updateFigure()
+    } else {
+        switchPosition = 0;
+        updateFigure()
+    }
 });
+
