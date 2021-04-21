@@ -19,7 +19,7 @@ var twoOccupantWeight = 25;
 // GET ID
 // Input
 var inputEmptyWeight = document.getElementById('input-empty-weight');
-var inputStartMoment = document.getElementById('input-start-moment');
+var inputStartCG = document.getElementById('input-start-cg');
 var inputFuel = document.getElementById('input-fuel');
 var inputPilot = document.getElementById('input-pilot');
 var inputPassenger = document.getElementById('input-passenger');
@@ -174,7 +174,7 @@ inputEmptyWeight.addEventListener('change', function () {
 });
 
 // START MOMENT
-inputStartMoment.addEventListener('change', function () {
+inputStartCG.addEventListener('change', function () {
     // sliderFuel.noUiSlider.set([this.value, null]);
     updateFigure();
 });

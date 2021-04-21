@@ -192,55 +192,48 @@ var idCenterageOutputZF = document.getElementById('centerageZF-output');
 // UPDATE FIGURE
 
 function updateFigure() {
+    // get weights
+    var emptyWeight = parseFloat(inputEmptyWeight.value);
+    var fuelWeight = parseFloat(inputFuel.value) * 0.72;
+    var pilotWeight = parseFloat(inputPilot.value);
+    var passengerWeight = parseFloat(inputPassenger.value);
+    var baggageWeight = parseFloat(inputBaggage.value);
+    
+    // empty / start moment
+    var startMoment = (parseFloat(inputStartCG.value)/100*mac + refmac)*emptyWeight
+
+    // ballast position
     ballastMoment = switchPosition*ballastFrontMoment + (1-switchPosition)*ballastRearMoment;
+
     var localArmPilot = armPilotLight;
     if (parseFloat(inputPilot.value) > pilotWeightLimit) {
         localArmPilot = armPilotHeavy;
     }
-    var weightTO =
-        // weightEmpty +
-        parseFloat(inputEmptyWeight.value) +
-        parseFloat(inputFuel.value) * 0.72 +
-        parseFloat(inputPilot.value) +
-        parseFloat(inputPassenger.value) +
-        parseFloat(inputBaggage.value) + 
-        ballastWeight;
 
-    var weightZF =
-        // weightEmpty +
-        parseFloat(inputEmptyWeight.value) +
-        parseFloat(inputPilot.value) +
-        parseFloat(inputPassenger.value) +
-        parseFloat(inputBaggage.value) + 
-        ballastWeight;
-
-    var momentTO =
-        // weightEmpty * armEmpty +
-        parseFloat(inputStartMoment.value) +
-        parseFloat(inputFuel.value) * armFuel * 0.72 +
-        parseFloat(inputPilot.value) * localArmPilot +
-        parseFloat(inputPassenger.value) * armPassenger +
-        parseFloat(inputBaggage.value) * armBaggage + 
-        ballastMoment;
-
-    var momentZF =
-        // weightEmpty * armEmpty +
-        parseFloat(inputStartMoment.value) +
-        parseFloat(inputPilot.value) * localArmPilot +
-        parseFloat(inputPassenger.value) * armPassenger +
-        parseFloat(inputBaggage.value) * armBaggage + 
-        ballastMoment;
-
+    // takeoff weight
+    var weightTO = emptyWeight + pilotWeight + passengerWeight + baggageWeight + ballastWeight + fuelWeight;
+    // zero fuel weight
+    var weightZF = emptyWeight + pilotWeight + passengerWeight + baggageWeight + ballastWeight;
+    
+    // takeoff moment
+    var momentTO = startMoment + fuelWeight * armFuel + pilotWeight * localArmPilot +
+    passengerWeight * armPassenger + baggageWeight * armBaggage + ballastMoment;
+    // zero fuel moment
+    var momentZF = startMoment + pilotWeight * localArmPilot +
+    passengerWeight * armPassenger + baggageWeight * armBaggage + ballastMoment;
+    
+    // take off centerage
     var armTO = momentTO / weightTO;
     var centerageTO = (armTO - refmac) / mac;
-
+    
+    // zero fuel centerage
     var armZF = momentZF / weightZF;
     var centerageZF = (armZF - refmac) / mac;
 
     // console.log(TOweight);
     idWeightOutputTO.innerHTML = "TO Weight: " + weightFormat.to(weightTO);
     idCenterageOutputTO.innerHTML = "TO Centerage: " + centerageFormat.to(centerageTO * 100);
-    idMomentOutputTO.innerHTML = "To Moment: " + momentFormat.to(momentTO / 1000);
+    idMomentOutputTO.innerHTML = "TO Moment: " + momentFormat.to(momentTO / 1000);
 
     idWeightOutputZF.innerHTML = "ZF Weight: " + weightFormat.to(weightZF);
     idCenterageOutputZF.innerHTML = "ZF Centerage: " + centerageFormat.to(centerageZF * 100);
