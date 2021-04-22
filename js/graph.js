@@ -184,6 +184,7 @@ var idCenterageOutputTO = document.getElementById('centerageTO-output');
 var idWeightOutputZF = document.getElementById('weightZF-output');
 var idMomentOutputZF = document.getElementById('momentZF-output');
 var idCenterageOutputZF = document.getElementById('centerageZF-output');
+var idWeightFuel = document.getElementById('fuel-output');
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // UPDATE FIGURE
 
@@ -234,6 +235,8 @@ function updateFigure() {
     idWeightOutputZF.innerHTML = "ZF Weight: " + weightFormat.to(weightZF);
     idCenterageOutputZF.innerHTML = "ZF Centerage: " + centerageFormat.to(centerageZF * 100);
     idMomentOutputZF.innerHTML = "ZF Moment: " + momentFormat.to(momentZF / 1000);
+
+    idWeightFuel.innerHTML = "Fuel Weight: " + weightFormat.to(fuelWeight);
 
     dataTO = [{ x: centerageTO * 100, y: weightTO }];
     pointTO
