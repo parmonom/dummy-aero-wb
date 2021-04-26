@@ -202,11 +202,11 @@ function updateFigure() {
     // ballast position
     ballastMoment = switchPosition*ballastFrontMoment + (1-switchPosition)*ballastRearMoment;
 
-    var localArmPilot = armPilotLight;
-    if (parseFloat(inputPilot.value) > pilotWeightLimit) {
-        localArmPilot = armPilotHeavy;
-    }
-
+    // arm pilot linear
+    const coef_a = ((armPilotHeavy - armPilotLight)/(110 - 55));
+    const coef_b = (armPilotLight - coef_a*55);
+    localArmPilot = coef_a*pilotWeight + coef_b;
+    
     // takeoff weight
     var weightTO = emptyWeight + pilotWeight + passengerWeight + baggageWeight + ballastWeight + fuelWeight;
     // zero fuel weight
