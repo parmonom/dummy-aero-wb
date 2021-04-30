@@ -17,165 +17,132 @@ var momentFormat = wNumb({
     suffix: ' kg.m'
 });
 
-
-
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// VARS 
-var xMin = 14;
-var xMax = 35;
-var yMin = 325;
-var yMax = 650;
-
-// weightDefault
-var weightEmpty = 300; //kg
-
-// initiator data (dummy)
-var initMarker = [{ x: 26, y: 500 }]
-
-var profilEnvelope = [
+// FIGURE
+var dataEnvelope = [
     { x: 17.5, y: 385 }, { x: 17.5, y: 600 },
     { x: 31.5, y: 600 }, { x: 31.5, y: 385 },
     { x: 17.5, y: 385 }
 ];
 
-var profilWeight = [
-    { x: 15, y: 385 }, { x: 18, y: 600 },
+var dataResult = [
+    { x: 20, y: 400 }, { x: 26, y: 500 },
 ];
 
-//weight
-var ballastWeight = 6;
-var pilotWeightLimit = 80
-
-// moment
-var ballastFrontMoment = -1466*ballastWeight;
-var ballastRearMoment = 2094*ballastWeight;
-
-// arms
-var armFuel = 689; //mm
-var armPilotLight = 369; //mm
-var armPilotHeavy = 416; //mm
-var armPassenger = 1273; //mm
-var armBaggage = 1894; //mm
-var armRearBallast = 2094; //mm
-var armFrontBallast = -1466; //mm
-
-// Default centrage
-var refmac = 114; //mm
-var mac = 1237; //mm
-
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// FIGURE
-
-// set the dimensions and margins of the graph
-var margin = { top: 10, right: 40, bottom: 30, left: 30 },
-    width = 350 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+const graph_domain = { x_min: 15, x_max: 33, y_min: 350, y_max: 650 };
+const figure_size = { height: 350, width: 350, x_margin: 40, y_margin: 30 };
 
 // append the svg object to the body of the page
-var svG = d3.select("#figure_area")
+var svg = d3.select("#figure_area")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
-
+    .attr("width", figure_size.width)
+    .attr("height", figure_size.height)
 
 // X scale and Axis
-var x = d3.scaleLinear()
-    .domain([xMin, xMax])
-    .range([0, width]);
+var x_scale = d3.scaleLinear()
+    .domain([graph_domain.x_min, graph_domain.x_max])
+    .range([figure_size.x_margin, (figure_size.width - figure_size.x_margin)]);
 
-var xticks = [18, 20, 22, 24, 26, 28, 30, 32, 34];
-var xAxis = d3.axisLeft()
-    .scale(x)
-    .tickValues(xticks);
+var x_ticks = [16, 18, 20, 22, 24, 26, 28, 30, 32];
+var x_axis = d3.axisBottom()
+    .scale(x_scale)
+    .tickValues(x_ticks);
 
-svG
-    .append('g')
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
-
-// X-axis label
-svG
+svg.append("g")
+    .attr("transform", "translate(0, " + (figure_size.height - figure_size.y_margin) + ")")
+    .call(x_axis);
+svg
     .append("text")
     .attr("class", "x label")
     .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height - 6)
+    .attr("x", figure_size.width - figure_size.x_margin)
+    .attr("y", (figure_size.height - figure_size.y_margin - 6))
     .text("Centerage (%)");
 
 
 // Y scale and Axis
-var y = d3.scaleLinear()
-    .domain([yMin, yMax])
-    .range([height, 0]);
+var y_scale = d3.scaleLinear()
+    .domain([graph_domain.y_min, graph_domain.y_max])
+    .range([figure_size.height - figure_size.y_margin, figure_size.y_margin]);
 
-var yticks = [350, 400, 450, 500, 550, 600, 650, 700, 750, 800];
-var yAxis = d3.axisLeft()
-    .scale(y)
-    .tickValues(yticks);
+var y_ticks = [350, 400, 450, 500, 550, 600, 650];
+var y_axis = d3.axisLeft()
+    .scale(y_scale)
+    .tickValues(y_ticks);
 
-svG
-    .append('g')
-    .call(yAxis);
-
-// Y-axis label
-svG
+svg.append("g")
+    .attr("transform", "translate(" + figure_size.x_margin + ",0)")
+    .call(y_axis);
+svg
     .append("text")
     .attr("class", "y label")
     .attr("text-anchor", "end")
-    .attr("y", 6)
-    .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
+    .attr("x", -figure_size.x_margin + 10)
+    .attr("y", figure_size.y_margin + 16)
+    .attr("dy", ".75em")
     .text("Weight (kg)");
 
-// Add marker weight and balance
-var pointTO = svG.selectAll("whatever")
-    .data(initMarker)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d) { return x(d.x) })
-    .attr("cy", function(d) { return y(d.y) })
-    .attr("fill", 'red')
-    .attr("r", 2.5)
-
-// Add marker weight and balance
-var pointZF = svG.selectAll("whatever")
-    .data(initMarker)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d) { return x(d.x) })
-    .attr("cy", function(d) { return y(d.y) })
-    .attr("fill", 'orange')
-    .attr("r", 2.5)
-
-
-// Add weight line
-var lineWeight = svG
-    .append("path")
-    .datum(profilWeight)
-    .attr("fill", "none")
-    .attr("stroke", "black")
-    .attr("stroke-width", .75)
-    .attr("d", d3.line()
-        .x(function(d) { return x(d.x) })
-        .y(function(d) { return y(d.y) })
-    )
-
-    
 // Add envelope
-svG
+svg
     .append("path")
-    .datum(profilEnvelope)
+    .datum(dataEnvelope)
     .attr("fill", "none")
     .attr("stroke", "black")
     .attr("stroke-width", 1.5)
-    // .attr("transform", "translate(" + margin.left + "," + (margin.top) + ")")
     .attr("d", d3.line()
-        .x(function(d) { return x(d.x) })
-        .y(function(d) { return y(d.y) })
-    )
+        .x(function (d) { return x_scale(d.x) })
+        .y(function (d) { return y_scale(d.y) })
+    );
+
+// Add weight line
+var lineResult = svg.append("line")
+    .attr('x1', x_scale(dataResult[0].x))
+    .attr('y1', y_scale(dataResult[0].y))
+    .attr('x2', x_scale(dataResult[1].x))
+    .attr('y2', y_scale(dataResult[1].y))
+    .attr("stroke", 'black')
+    .attr("stroke-width", 1.5)
+
+// Add take off point
+var pointTO = svg.append("circle")
+    .attr("cx", x_scale(dataResult[0].x))
+    .attr("cy", y_scale(dataResult[0].y))
+    .attr("fill", 'red')
+    .attr("r", 2.5);
+
+// Add zero fuel point
+var pointZF = svg.append("circle")
+    .attr("cx", x_scale(dataResult[1].x))
+    .attr("cy", y_scale(dataResult[1].y))
+    .attr("fill", 'red')
+    .attr("r", 2.5);
+
+// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// VARS 
+//weight
+const ballastWeight = 6;
+
+// moment
+const ballastFrontMoment = -1466 * ballastWeight;
+const ballastRearMoment = 2094 * ballastWeight;
+
+// arms
+const armFuel = 689; //mm
+const armPilotLight = 369; //mm
+const armPilotHeavy = 416; //mm
+const armPassenger = 1273; //mm
+const armBaggage = 1894; //mm
+const armRearBallast = 2094; //mm
+const armFrontBallast = -1466; //mm
+
+// Default centrage
+const refmac = 114; //mm
+const mac = 1237; //mm
+
+// arm pilot linear
+var coef_a = ((armPilotHeavy - armPilotLight) / (110 - 55));
+var coef_b = (armPilotLight - coef_a * 55);
 
 // id text output
 var idWeightOutputTO = document.getElementById('weightTO-output');
@@ -185,6 +152,7 @@ var idWeightOutputZF = document.getElementById('weightZF-output');
 var idMomentOutputZF = document.getElementById('momentZF-output');
 var idCenterageOutputZF = document.getElementById('centerageZF-output');
 var idWeightFuel = document.getElementById('fuel-output');
+
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // UPDATE FIGURE
 
@@ -197,32 +165,30 @@ function updateFigure() {
     var baggageWeight = parseFloat(inputBaggage.value);
     
     // empty / start moment
-    var startMoment = (parseFloat(inputStartCG.value)/100*mac + refmac)*emptyWeight
+    var startMoment = (parseFloat(inputStartCG.value) / 100 * mac + refmac) * emptyWeight
 
     // ballast position
-    ballastMoment = switchPosition*ballastFrontMoment + (1-switchPosition)*ballastRearMoment;
+    ballastMoment = switchPosition * ballastFrontMoment + (1 - switchPosition) * ballastRearMoment;
 
-    // arm pilot linear
-    const coef_a = ((armPilotHeavy - armPilotLight)/(110 - 55));
-    const coef_b = (armPilotLight - coef_a*55);
-    localArmPilot = coef_a*pilotWeight + coef_b;
-    
+    // pilot local arm
+    localArmPilot = coef_a * pilotWeight + coef_b;
+
     // takeoff weight
     var weightTO = emptyWeight + pilotWeight + passengerWeight + baggageWeight + ballastWeight + fuelWeight;
     // zero fuel weight
     var weightZF = emptyWeight + pilotWeight + passengerWeight + baggageWeight + ballastWeight;
-    
+
     // takeoff moment
     var momentTO = startMoment + fuelWeight * armFuel + pilotWeight * localArmPilot +
-    passengerWeight * armPassenger + baggageWeight * armBaggage + ballastMoment;
+        passengerWeight * armPassenger + baggageWeight * armBaggage + ballastMoment;
     // zero fuel moment
     var momentZF = startMoment + pilotWeight * localArmPilot +
-    passengerWeight * armPassenger + baggageWeight * armBaggage + ballastMoment;
-    
+        passengerWeight * armPassenger + baggageWeight * armBaggage + ballastMoment;
+
     // take off centerage
     var armTO = momentTO / weightTO;
     var centerageTO = (armTO - refmac) / mac;
-    
+
     // zero fuel centerage
     var armZF = momentZF / weightZF;
     var centerageZF = (armZF - refmac) / mac;
@@ -238,25 +204,22 @@ function updateFigure() {
 
     idWeightFuel.innerHTML = "Fuel Weight: " + weightFormat.to(fuelWeight);
 
-    dataTO = [{ x: centerageTO * 100, y: weightTO }];
-    pointTO
-        .data(dataTO)
-        .attr("cx", function(d) { return x(d.x); })
-        .attr("cy", function(d) { return y(d.y); })
+    dataResult = [{ x: centerageZF * 100, y: weightZF },
+    { x: centerageTO * 100, y: weightTO }];
 
-    dataZF = [{ x: centerageZF * 100, y: weightZF }];
+    // Update points and line 
+    lineResult
+        .attr('x1', x_scale(dataResult[0].x))
+        .attr('y1', y_scale(dataResult[0].y))
+        .attr('x2', x_scale(dataResult[1].x))
+        .attr('y2', y_scale(dataResult[1].y))
 
     pointZF
-        .data(dataZF)
-        .attr("cx", function(d) { return x(d.x); })
-        .attr("cy", function(d) { return y(d.y); })
+        .attr("cx", x_scale(dataResult[0].x))
+        .attr("cy", y_scale(dataResult[0].y))
 
-    dataLineWeight = [{ x: centerageTO * 100, y: weightTO }, { x: centerageZF * 100, y: weightZF }];
-    lineWeight
-        .datum(dataLineWeight)
-        .attr("d", d3.line()
-            .x(function(d) { return x(d.x) })
-            .y(function(d) { return y(d.y) })
-        )
+    pointTO
+        .attr("cx", x_scale(dataResult[1].x))
+        .attr("cy", y_scale(dataResult[1].y))
 
 }
