@@ -124,12 +124,6 @@ noUiSlider.create(sliderFuel, {
 sliderPilot.noUiSlider.on('update', function (values, handle) {
     var value = values[handle];
     inputPilot.value = Math.round(value);  
-    // passenger max weight admissible
-    var pad = Math.max(0, occupantMaxWeight - (paxMaxWeight - value));
-
-    sliderPassenger.noUiSlider.updateOptions({
-        padding: [0, pad]
-    })
     updateFigure()
 });
 
@@ -137,45 +131,6 @@ sliderPilot.noUiSlider.on('update', function (values, handle) {
 sliderPassenger.noUiSlider.on('update', function (values, handle) {
     var value = values[handle];
     inputPassenger.value = Math.round(value);
-    
-    // if two occupants
-    if (value > twoOccupantWeight) {
-        // reduce fuel and baggage admissible with two occupants
-        sliderFuel.noUiSlider.updateOptions({
-            padding: [0, 50]
-        })
-        sliderBaggage.noUiSlider.updateOptions({
-            padding: [0, 10]
-        })
-        // move ballast to front
-        // change font size and color for the adviced value
-        switchFrontLabel.style.fontWeight = "bold"; 
-        switchFrontLabel.style.color = "black"; 
-        switchRearLabel.style.fontWeight = "normal"; 
-        switchRearLabel.style.color = "grey"; 
-        // move switch
-        switchBallast.checked = true;
-        switchPosition = 1;
-
-
-    } else {
-        sliderFuel.noUiSlider.updateOptions({
-            padding: [0, 0]
-        })
-        sliderBaggage.noUiSlider.updateOptions({
-            padding: [0, 0]
-        })
-        // move ballast to rear
-        // change font size and color for the adviced value
-        switchRearLabel.style.fontWeight = "bold"; 
-        switchRearLabel.style.color = "black"; 
-        switchFrontLabel.style.fontWeight = "normal"; 
-        switchFrontLabel.style.color = "grey"; 
-        // move switch
-        switchBallast.checked = false;
-        switchPosition = 0;
-    }
-        
     updateFigure()
 });
 
@@ -232,9 +187,17 @@ inputFuel.addEventListener('change', function () {
 switchBallast.addEventListener('change', function () {
     if (switchBallast.checked) {
         switchPosition = 1;
+        switchFrontLabel.style.fontWeight = "bold"; 
+        switchFrontLabel.style.color = "black"; 
+        switchRearLabel.style.fontWeight = "normal"; 
+        switchRearLabel.style.color = "grey"; 
         updateFigure()
     } else {
         switchPosition = 0;
+        switchRearLabel.style.fontWeight = "bold"; 
+        switchRearLabel.style.color = "black"; 
+        switchFrontLabel.style.fontWeight = "normal"; 
+        switchFrontLabel.style.color = "grey";
         updateFigure()
     }
 });
