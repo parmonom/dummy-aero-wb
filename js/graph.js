@@ -178,27 +178,27 @@ function updateFigure() {
     // warnings 
     // pax weight > 200kg
     if (pilotWeight + passengerWeight > 200) {
-        idWarningPax.innerHTML = "Occupant weight > 200kg"
+        idWarningPax.style.display = "block"
     } else {
-        idWarningPax.innerHTML = ""
+        idWarningPax.style.display = "none"
     }
     // 2 occupants 
     if (passengerWeight > 25) {
     // fuel > 100l
         if (fuelVolume > 100) {
-            idWarningFuel.innerHTML = "Fuel > 100L and 2 occupants"
+            idWarningFuel.style.display = "block"
         } else {
-            idWarningFuel.innerHTML = ""
+            idWarningFuel.style.display = "none"
         }
         // baggage > 15l
         if (baggageWeight > 15) {
-            idWarningBaggage.innerHTML = "Baggage > 15kg and 2 occupants"
+            idWarningBaggage.style.display = "block"
         } else {
-            idWarningBaggage.innerHTML = ""
+            idWarningBaggage.style.display = "none"
         }
     } else {
-        idWarningBaggage.innerHTML = ""
-        idWarningFuel.innerHTML = ""
+        idWarningBaggage.style.display = "none"
+        idWarningFuel.style.display = "none"
     }
     // empty / start moment
     var startMoment = (parseFloat(inputStartCG.value) / 100 * mac + refmac) * emptyWeight
