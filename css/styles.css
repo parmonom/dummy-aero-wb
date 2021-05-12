@@ -22,9 +22,9 @@ nav a span {
 
 /* debbug */
 
-.container {
-    /* border: 1px solid black; */
-}
+/* .container { 
+    border: 1px solid black;
+} */
 
 .row {
     margin-bottom: 10px;
@@ -119,6 +119,13 @@ input[type="number"]:not(.browser-default):focus:not([readonly]) {
     /* background: red; */
     box-shadow: none;
     border-color: red;
+}
+
+/* warnings  */
+.warning {
+    margin-bottom: 0px;
+    color: red;
+    font-weight: bold;
 }
 
 

@@ -152,18 +152,54 @@ var idWeightOutputZF = document.getElementById('weightZF-output');
 var idMomentOutputZF = document.getElementById('momentZF-output');
 var idCenterageOutputZF = document.getElementById('centerageZF-output');
 var idWeightFuel = document.getElementById('fuel-output');
+var idWarningPax = document.getElementById('warning-pax');
+var idWarningFuel = document.getElementById('warning-fuel');
+var idWarningBaggage = document.getElementById('warning-baggage');
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // UPDATE FIGURE
+function sendWarningTotalPax() {
+    idWarningPax.innerHTML = "Total pax weight > 200kg"
+}
+function removeWarningTotalPax() {
+    idWarningPax.innerHTML = ""
+}
+
 
 function updateFigure() {
     // get weights
     var emptyWeight = parseFloat(inputEmptyWeight.value);
-    var fuelWeight = parseFloat(inputFuel.value) * 0.72;
+    var fuelVolume = parseFloat(inputFuel.value);
+    var fuelWeight = fuelVolume * 0.72;
     var pilotWeight = parseFloat(inputPilot.value);
     var passengerWeight = parseFloat(inputPassenger.value);
     var baggageWeight = parseFloat(inputBaggage.value);
     
+    // warnings 
+    // pax weight > 200kg
+    if (pilotWeight + passengerWeight > 200) {
+        idWarningPax.innerHTML = "Occupant weight > 200kg"
+    } else {
+        idWarningPax.innerHTML = ""
+    }
+    // 2 occupants 
+    if (passengerWeight > 25) {
+    // fuel > 100l
+        if (fuelVolume > 100) {
+            idWarningFuel.innerHTML = "Fuel > 100L and 2 occupants"
+        } else {
+            idWarningFuel.innerHTML = ""
+        }
+        // baggage > 15l
+        if (baggageWeight > 15) {
+            idWarningBaggage.innerHTML = "Baggage > 15kg and 2 occupants"
+        } else {
+            idWarningBaggage.innerHTML = ""
+        }
+    } else {
+        idWarningBaggage.innerHTML = ""
+        idWarningFuel.innerHTML = ""
+    }
     // empty / start moment
     var startMoment = (parseFloat(inputStartCG.value) / 100 * mac + refmac) * emptyWeight
 
