@@ -19,6 +19,9 @@ nav a span {
     font-weight: bold;
 }
 
+nav .brand-logo {
+    font-size: 1rem;
+}
 
 /* debbug */
 
