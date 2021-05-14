@@ -13,6 +13,7 @@ const assets = [
     './css/styles.css',
     './css/materialize.min.css',
     './css/nouislider.min.css',
+    './img/google-icons/report_problem_black_18dp.svg',
     './img/google-icons/airline_seat_recline_extra-24px.svg',
     './img/google-icons/local_gas_station-24px.svg',
     './img/google-icons/airplanemode_active-24px.svg',
