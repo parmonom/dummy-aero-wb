@@ -6,6 +6,7 @@ var volumeFormat = wNumb({
 // VAR
 
 var emptyWeight = 330;
+var startCG = 15.0;
 var fuelQuantityDefault = 150;
 var pilotWeightDefault = 75;
 var passengerWeightDefault = 0;
@@ -39,6 +40,25 @@ var switchPosition = 0;
 // labels
 var switchFrontLabel = document.getElementById("front-label-ballast")
 var switchRearLabel = document.getElementById("rear-label-ballast")
+
+// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// Empty data from storage
+
+//empty weight
+//if storage exist start CG
+if (window.localStorage.getItem("emptyWeight")) {
+    inputEmptyWeight.value = window.localStorage.getItem("emptyWeight")
+} else {
+// else fill storage from default value
+    window.localStorage.setItem("emptyWeight", emptyWeight)    
+}
+
+//start CG
+if (window.localStorage.getItem("startCG")) {
+    inputStartCG.value = window.localStorage.getItem("startCG")
+} else {
+    window.localStorage.setItem("startCG", startCG)    
+}
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // CREATE SLIDERS
@@ -177,13 +197,13 @@ sliderFuel.noUiSlider.on('update', function (values, handle) {
 // ON UPDATE INPUTS
 // EMPTY WEIGHT
 inputEmptyWeight.addEventListener('change', function () {
-    // sliderFuel.noUiSlider.set([this.value, null]);
+    window.localStorage.setItem("emptyWeight", this.value)
     updateFigure();
 });
 
 // START MOMENT
 inputStartCG.addEventListener('change', function () {
-    // sliderFuel.noUiSlider.set([this.value, null]);
+    window.localStorage.setItem("startCG", this.value)
     updateFigure();
 });
 
