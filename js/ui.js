@@ -42,23 +42,32 @@ var switchFrontLabel = document.getElementById("front-label-ballast")
 var switchRearLabel = document.getElementById("rear-label-ballast")
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// Empty data from storage
+// Empty data
 
-//empty weight
-//if storage exist start CG
-if (window.localStorage.getItem("emptyWeight")) {
+let params = new URLSearchParams(document.location.search);
+
+var url_emptyWeight = parseFloat(params.get('ew'));
+var url_startCG = parseFloat(params.get('scg'));
+var url_immat = params.get('im');
+
+
+if (!isNaN(url_emptyWeight) & !isNaN(url_startCG) & url_immat != null) {
+    inputEmptyWeight.value = url_emptyWeight
+    inputStartCG.value = url_startCG
+    window.localStorage.setItem("emptyWeight", url_emptyWeight)    
+    window.localStorage.setItem("startCG", url_startCG)    
+
+} else if (window.localStorage.getItem("emptyWeight") & window.localStorage.getItem("startCG")) {
+    //if storage exist start CG
     inputEmptyWeight.value = window.localStorage.getItem("emptyWeight")
-} else {
-// else fill storage from default value
-    window.localStorage.setItem("emptyWeight", emptyWeight)    
-}
-
-//start CG
-if (window.localStorage.getItem("startCG")) {
     inputStartCG.value = window.localStorage.getItem("startCG")
+
 } else {
+    //else fill storage from default value
+    window.localStorage.setItem("emptyWeight", emptyWeight)    
     window.localStorage.setItem("startCG", startCG)    
 }
+
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // CREATE SLIDERS
