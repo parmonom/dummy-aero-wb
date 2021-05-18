@@ -2,10 +2,10 @@
 var sizedb = localStorage.length;
 
 // add default if not in db
-if (localStorage.getItem("default") === null) {
+if (localStorage.getItem("custom") === null) {
     console.log('in')
-    var default_ac = ['default', 330, 14];
-    localStorage.setItem("default", JSON.stringify(default_ac));
+    var custom_ac = ['custom', 330, 14];
+    localStorage.setItem("custom", JSON.stringify(custom_ac));
 }
 
 // Check if new data given in url 

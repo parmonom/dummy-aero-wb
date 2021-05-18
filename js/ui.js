@@ -133,6 +133,13 @@ selectorMSN.addEventListener('change', function () {
     var data = JSON.parse(localStorage.getItem(this.value));
     inputEmptyWeight.value = data[1];
     inputStartCG.value = data[2];
+    if (this.value != 'custom') {
+        inputEmptyWeight.disabled = true
+        inputStartCG.disabled = true
+    } else {
+        inputEmptyWeight.disabled = false
+        inputStartCG.disabled = false
+    }
     updateFigure();
 });
 
@@ -195,13 +202,17 @@ sliderFuel.noUiSlider.on('update', function (values, handle) {
 // ON UPDATE INPUTS
 // EMPTY WEIGHT
 inputEmptyWeight.addEventListener('change', function () {
-    window.localStorage.setItem("emptyWeight", this.value)
+    var data = JSON.parse(localStorage.getItem("custom"));
+    data[1] = parseFloat(this.value)
+    localStorage.setItem("custom", JSON.stringify(data));
     updateFigure();
 });
 
 // START MOMENT
 inputStartCG.addEventListener('change', function () {
-    window.localStorage.setItem("startCG", this.value)
+    var data = JSON.parse(localStorage.getItem("custom"));
+    data[2] = parseFloat(this.value)
+    localStorage.setItem("custom", JSON.stringify(data));
     updateFigure();
 });
 
