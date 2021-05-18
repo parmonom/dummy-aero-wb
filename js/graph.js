@@ -11,12 +11,6 @@ var centerageFormat = wNumb({
     suffix: ' %'
 });
 
-var momentFormat = wNumb({
-    mark: '.',
-    decimals: 1,
-    suffix: ' kg.m'
-});
-
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // FIGURE
 var dataEnvelope = [
@@ -146,10 +140,8 @@ var coef_b = (armPilotLight - coef_a * 55);
 
 // id text output
 var idWeightOutputTO = document.getElementById('weightTO-output');
-var idMomentOutputTO = document.getElementById('momentTO-output');
 var idCenterageOutputTO = document.getElementById('centerageTO-output');
 var idWeightOutputZF = document.getElementById('weightZF-output');
-var idMomentOutputZF = document.getElementById('momentZF-output');
 var idCenterageOutputZF = document.getElementById('centerageZF-output');
 var idWeightFuel = document.getElementById('fuel-output');
 var idWarningPax = document.getElementById('warning-pax');
@@ -230,15 +222,13 @@ function updateFigure() {
     var centerageZF = (armZF - refmac) / mac;
 
     // console.log(TOweight);
-    idWeightOutputTO.innerHTML = "TO Weight: " + weightFormat.to(weightTO);
-    idCenterageOutputTO.innerHTML = "TO Centerage: " + centerageFormat.to(centerageTO * 100);
-    idMomentOutputTO.innerHTML = "TO Moment: " + momentFormat.to(momentTO / 1000);
+    idWeightOutputTO.innerHTML = "Take-off weight: " + weightFormat.to(weightTO);
+    idCenterageOutputTO.innerHTML = "Take-off centerage: " + centerageFormat.to(centerageTO * 100);
 
-    idWeightOutputZF.innerHTML = "ZF Weight: " + weightFormat.to(weightZF);
-    idCenterageOutputZF.innerHTML = "ZF Centerage: " + centerageFormat.to(centerageZF * 100);
-    idMomentOutputZF.innerHTML = "ZF Moment: " + momentFormat.to(momentZF / 1000);
+    idWeightOutputZF.innerHTML = "Zero-fuel weight: " + weightFormat.to(weightZF);
+    idCenterageOutputZF.innerHTML = "Zero-fuel centerage: " + centerageFormat.to(centerageZF * 100);
 
-    idWeightFuel.innerHTML = "Fuel Weight: " + weightFormat.to(fuelWeight);
+    idWeightFuel.innerHTML = "Fuel weight: " + weightFormat.to(fuelWeight);
 
     dataResult = [{ x: centerageZF * 100, y: weightZF },
     { x: centerageTO * 100, y: weightTO }];
