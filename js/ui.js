@@ -129,8 +129,9 @@ noUiSlider.create(sliderFuel, {
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SELECTOR
 selectorMSN.addEventListener('change', function () {
-    console.log(this.value)
     var data = JSON.parse(localStorage.getItem(this.value));
+    var lastkey = this.value;
+    localStorage.setItem("lastkey", lastkey);
     inputEmptyWeight.value = data[1];
     inputStartCG.value = data[2];
     if (this.value != 'custom') {
