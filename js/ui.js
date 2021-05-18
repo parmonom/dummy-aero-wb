@@ -41,33 +41,13 @@ var switchPosition = 0;
 var switchFrontLabel = document.getElementById("front-label-ballast")
 var switchRearLabel = document.getElementById("rear-label-ballast")
 
+
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// Empty data
-
-let params = new URLSearchParams(document.location.search);
-
-var url_emptyWeight = parseFloat(params.get('ew'));
-var url_startCG = parseFloat(params.get('scg'));
-var url_immat = params.get('im');
-
-
-if (!isNaN(url_emptyWeight) & !isNaN(url_startCG) & url_immat != null) {
-    inputEmptyWeight.value = url_emptyWeight
-    inputStartCG.value = url_startCG
-    window.localStorage.setItem("emptyWeight", url_emptyWeight)    
-    window.localStorage.setItem("startCG", url_startCG)    
-
-} else if (window.localStorage.getItem("emptyWeight") & window.localStorage.getItem("startCG")) {
-    //if storage exist start CG
-    inputEmptyWeight.value = window.localStorage.getItem("emptyWeight")
-    inputStartCG.value = window.localStorage.getItem("startCG")
-
-} else {
-    //else fill storage from default value
-    window.localStorage.setItem("emptyWeight", emptyWeight)    
-    window.localStorage.setItem("startCG", startCG)    
-}
-
+// SELECTOR
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+});
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // CREATE SLIDERS
@@ -146,6 +126,15 @@ noUiSlider.create(sliderFuel, {
     },
 });
 
+// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// ON UPDATE SELECTOR
+selectorMSN.addEventListener('change', function () {
+    console.log(this.value)
+    var data = JSON.parse(localStorage.getItem(this.value));
+    inputEmptyWeight.value = data[1];
+    inputStartCG.value = data[2];
+    updateFigure();
+});
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SLIDERS
@@ -164,10 +153,10 @@ sliderPassenger.noUiSlider.on('update', function (values, handle) {
     if (value > twoOccupantWeight) {
         // move ballast to front
         // change font size and color for the adviced value
-        switchFrontLabel.style.fontWeight = "bold"; 
-        switchFrontLabel.style.color = "black"; 
-        switchRearLabel.style.fontWeight = "normal"; 
-        switchRearLabel.style.color = "grey"; 
+        switchFrontLabel.style.fontWeight = "bold";
+        switchFrontLabel.style.color = "black";
+        switchRearLabel.style.fontWeight = "normal";
+        switchRearLabel.style.color = "grey";
         // move switch
         switchBallast.checked = true;
         switchPosition = 1;
@@ -176,10 +165,10 @@ sliderPassenger.noUiSlider.on('update', function (values, handle) {
     } else {
         // move ballast to rear
         // change font size and color for the adviced value
-        switchRearLabel.style.fontWeight = "bold"; 
-        switchRearLabel.style.color = "black"; 
-        switchFrontLabel.style.fontWeight = "normal"; 
-        switchFrontLabel.style.color = "grey"; 
+        switchRearLabel.style.fontWeight = "bold";
+        switchRearLabel.style.color = "black";
+        switchFrontLabel.style.fontWeight = "normal";
+        switchFrontLabel.style.color = "grey";
         // move switch
         switchBallast.checked = false;
         switchPosition = 0;

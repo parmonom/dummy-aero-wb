@@ -26,14 +26,20 @@
             <div class="container">
                 <a href="./index.html">DUMMY.<span>AERO</span></a>
                 <a href="./about.html" class="black-text right">About</a>
+                <a href="./database.html" class="black-text right">Data</a>
             </div>
         </nav>
     </header>
 
+
     <div class="container">
-        <!-- <div class="row">
-            <div class="col s12 m6" id="main-element">
-                <div class="container"> -->
+        <div class="row valign-wrapper" id="weight-element">
+            <div class="input-field col s12">
+                <select id="selector-msn">
+                    <!-- <option value="" disabled selected>Choose your MSN</option> -->
+                </select>
+            </div>
+        </div>
 
         <!-- Empty weight and moment -->
         <div class="row valign-wrapper" id="weight-element">
@@ -133,7 +139,7 @@
         </div>
 
         <!-- warnings -->
-        
+
         <div class="row center warning" id="warning-pax" style="display: none">
             <img src="./img/google-icons/report_problem_black_18dp.svg" class="left">
             Occupant weight > 200kg
@@ -145,45 +151,45 @@
         <div class="row center warning" id="warning-baggage" style="display: none">
             <img src="./img/google-icons/report_problem_black_18dp.svg" class="left">
             Baggage > 15kg and 2 occupants
-            </div>
         </div>
-            
-        <!-- graph -->
-        <div class="row center">
-            <!-- Add a svg shape -->
-            <div id="figure_area"></div>
-        </div>
+    </div>
 
-        <!-- output text TO -->
-        <div class="row" id="result-element">
-            <div class="container">
-                <div class="row center">
-                    <p class="col s6 " id="weightTO-output"></p>
-                    <p class="col s6" id="centerageTO-output"></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- output text ZF -->
-        <div class="row" id="result-element">
-            <div class="container">
-                <div class="row center">
-                    <p class="col s6" id="weightZF-output"></p>
-                    <p class="col s6" id="centerageZF-output"></p>
-                </div>
-            </div>
-        </div>
+    <!-- graph -->
+    <div class="row center">
+        <!-- Add a svg shape -->
+        <div id="figure_area"></div>
+    </div>
 
-        <!-- output text Fuel -->
-        <div class="row" id="result-element">
-            <div class="container">
-                <div class="row center">
-                    <p class="col s6" id="fuel-output"></p>
-                </div>
+    <!-- output text TO -->
+    <div class="row" id="result-element">
+        <div class="container">
+            <div class="row center">
+                <p class="col s6 " id="weightTO-output"></p>
+                <p class="col s6" id="centerageTO-output"></p>
             </div>
         </div>
+    </div>
 
-        <p class="version left">version 0.1.9</p>
+    <!-- output text ZF -->
+    <div class="row" id="result-element">
+        <div class="container">
+            <div class="row center">
+                <p class="col s6" id="weightZF-output"></p>
+                <p class="col s6" id="centerageZF-output"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- output text Fuel -->
+    <div class="row" id="result-element">
+        <div class="container">
+            <div class="row center">
+                <p class="col s6" id="fuel-output"></p>
+            </div>
+        </div>
+    </div>
+
+    <p class="version left">version 0.1.9</p>
     </div>
 
     <!-- Compiled and minified JavaScript -->
@@ -192,10 +198,12 @@
     <script type="text/javascript" src="./js/vendor/wNumb.min.js"></script>
     <script type="text/javascript" src="./js/vendor/d3.v6.min.js"></script>
 
+    <script type="text/javascript" src="./js/db.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
     <script type="text/javascript" src="./js/ui.js"></script>
     <script type="text/javascript" src="./js/app.js"></script>
 
 
 </body>
+
 </html>
