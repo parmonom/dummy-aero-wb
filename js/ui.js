@@ -134,7 +134,7 @@ selectorMSN.addEventListener('change', function () {
     localStorage.setItem("lastkey", lastkey);
     inputEmptyWeight.value = data[1];
     inputStartCG.value = data[2];
-    if (this.value != 'custom') {
+    if (this.value != 'msn_custom') {
         inputEmptyWeight.disabled = true
         inputStartCG.disabled = true
     } else {
@@ -143,6 +143,7 @@ selectorMSN.addEventListener('change', function () {
     }
     updateFigure();
 });
+
 // trigger change
 selectorMSN.dispatchEvent(new Event('change'));
 

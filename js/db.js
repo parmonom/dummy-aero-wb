@@ -8,7 +8,7 @@ if (localStorage.getItem("custom") === null) {
     localStorage.setItem("lastkey", lastkey);
     // store custom
     var custom_ac = ['custom', 330, 14];
-    localStorage.setItem("custom", JSON.stringify(custom_ac));
+    localStorage.setItem("msn_custom", JSON.stringify(custom_ac));
 }
 
 // Check if new data given in url 
@@ -24,9 +24,18 @@ if (!isNaN(url_emptyWeight) & !isNaN(url_startCG) & url_msn != null) {
     localStorage.setItem("lastkey", lastkey);
     // store url data
     var new_data = [url_msn, url_emptyWeight, url_startCG];
-    localStorage.setItem(url_msn, JSON.stringify(new_data));
+    localStorage.setItem('msn_'+url_msn, JSON.stringify(new_data));
 }
 
+// open data
+var msn_data = [];
+for (var i = 0; i < sizedb; ++i) {
+    var key_item = localStorage.key(i);
+    // store msn data
+    if (key_item.includes('msn')) {
+        msn_data.push(JSON.parse(localStorage.getItem(key_item)));
+    }
+}
 
 // // add data to dropdown
 // get last key
@@ -34,18 +43,19 @@ var lastkey = localStorage.getItem('lastkey');
 // get selector
 var selectorMSN = document.getElementById("selector-msn");
 for ( var i = 0, len = localStorage.length; i < len; ++i ) {
-    console.log(i, localStorage.key( i ), lastkey)
+    // console.log(i, localStorage.key( i ), lastkey)
 
-    if (localStorage.key(i) === lastkey) {
+    if (localStorage.key(i) === 'msn_'+lastkey) {
         var data = JSON.parse(localStorage.getItem(localStorage.key( i )));
-        var tag = '<option selected="selected" value='+data[0]+'>MSN '+data[0]+'</option>'
+        var tag = '<option selected="selected" value=msn_'+data[0]+'>MSN '+data[0]+'</option>'
         selectorMSN.insertAdjacentHTML('beforeend', tag);
     }
     else if (localStorage.key(i) != 'lastkey') {
         var data = JSON.parse(localStorage.getItem(localStorage.key( i )));
-        var tag = '<option value='+data[0]+'>MSN '+data[0]+'</option>'
+        var tag = '<option value=msn_'+data[0]+'>MSN '+data[0]+'</option>'
         selectorMSN.insertAdjacentHTML('beforeend', tag);
     }
+    // console.log(tag)
 }
 
 //     inputEmptyWeight.value = url_emptyWeight
