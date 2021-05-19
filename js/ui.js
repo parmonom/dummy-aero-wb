@@ -143,6 +143,8 @@ selectorMSN.addEventListener('change', function () {
     }
     updateFigure();
 });
+// trigger change
+selectorMSN.dispatchEvent(new Event('change'));
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SLIDERS

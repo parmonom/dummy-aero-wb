@@ -47,7 +47,6 @@ for ( var i = 0, len = localStorage.length; i < len; ++i ) {
         selectorMSN.insertAdjacentHTML('beforeend', tag);
     }
 }
-//  selected="selected"
 
 //     inputEmptyWeight.value = url_emptyWeight
 //     inputStartCG.value = url_startCG
