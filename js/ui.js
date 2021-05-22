@@ -129,12 +129,16 @@ noUiSlider.create(sliderFuel, {
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SELECTOR
 selectorMSN.addEventListener('change', function () {
-    var data = JSON.parse(localStorage.getItem(this.value));
+    var data = msnIdDecode(this.value)
     var lastkey = this.value;
     localStorage.setItem("lastkey", lastkey);
+    
+    // update input
     inputEmptyWeight.value = data[1];
     inputStartCG.value = data[2];
-    if (this.value != 'msn_custom') {
+
+    // disable input if selection is not custom
+    if (this.value != custom_id) {
         inputEmptyWeight.disabled = true
         inputStartCG.disabled = true
     } else {
