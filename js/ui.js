@@ -210,17 +210,17 @@ sliderFuel.noUiSlider.on('update', function (values, handle) {
 // ON UPDATE INPUTS
 // EMPTY WEIGHT
 inputEmptyWeight.addEventListener('change', function () {
-    var data = JSON.parse(localStorage.getItem("custom"));
-    data[1] = parseFloat(this.value)
-    localStorage.setItem("custom", JSON.stringify(data));
+    // var data = JSON.parse(localStorage.getItem("custom"));
+    // data[1] = parseFloat(this.value)
+    // localStorage.setItem("custom", JSON.stringify(data));
     updateFigure();
 });
 
 // START MOMENT
 inputStartCG.addEventListener('change', function () {
-    var data = JSON.parse(localStorage.getItem("custom"));
-    data[2] = parseFloat(this.value)
-    localStorage.setItem("custom", JSON.stringify(data));
+    // var data = JSON.parse(localStorage.getItem("custom"));
+    // data[2] = parseFloat(this.value)
+    // localStorage.setItem("custom", JSON.stringify(data));
     updateFigure();
 });
 
