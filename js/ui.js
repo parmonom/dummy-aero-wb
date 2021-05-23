@@ -129,16 +129,16 @@ noUiSlider.create(sliderFuel, {
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SELECTOR
 selectorMSN.addEventListener('change', function () {
-    var data = msnIdDecode(this.value)
-    var lastkey = this.value;
+    let data = msnIdDecode(this.value)
+    lastkey = this.value;
     localStorage.setItem("lastkey", lastkey);
-    
+
     // update input
     inputEmptyWeight.value = data[1];
     inputStartCG.value = data[2];
 
     // disable input if selection is not custom
-    if (this.value != custom_id) {
+    if (this.value != msn_custom_id) {
         inputEmptyWeight.disabled = true
         inputStartCG.disabled = true
     } else {
@@ -210,17 +210,29 @@ sliderFuel.noUiSlider.on('update', function (values, handle) {
 // ON UPDATE INPUTS
 // EMPTY WEIGHT
 inputEmptyWeight.addEventListener('change', function () {
-    // var data = JSON.parse(localStorage.getItem("custom"));
-    // data[1] = parseFloat(this.value)
-    // localStorage.setItem("custom", JSON.stringify(data));
+    msn_custom[1] = this.value
+    msn_custom_id = btoa(msn_custom);
+    // change selector option
+    selectorMSN.options[selectorMSN.selectedIndex].value = msn_custom_id;
+    // store new custom id
+    localStorage.setItem("msn_custom_id", msn_custom_id);
+    // update lastkey
+    lastkey = msn_custom_id;
+    localStorage.setItem("lastkey", lastkey);
     updateFigure();
 });
 
 // START MOMENT
 inputStartCG.addEventListener('change', function () {
-    // var data = JSON.parse(localStorage.getItem("custom"));
-    // data[2] = parseFloat(this.value)
-    // localStorage.setItem("custom", JSON.stringify(data));
+    msn_custom[2] = this.value
+    msn_custom_id = btoa(msn_custom);
+    // change selector option
+    selectorMSN.options[selectorMSN.selectedIndex].value = msn_custom_id;
+    // store new custom id
+    localStorage.setItem("msn_custom_id", msn_custom_id);
+    // update lastkey
+    lastkey = msn_custom_id;
+    localStorage.setItem("lastkey", lastkey);
     updateFigure();
 });
 

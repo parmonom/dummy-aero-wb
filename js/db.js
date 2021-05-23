@@ -1,5 +1,5 @@
 // define custom id
-var custom_id = btoa('custom,330,14'); //"Y3VzdG9tLDMzMCwxNA=="
+var default_custom_id = btoa('custom,330,14'); //"Y3VzdG9tLDMzMCwxNA=="
 
 // function that read and decode msn_data
 function msnIdDecode(x) {
@@ -13,32 +13,37 @@ function msnIdDecode(x) {
 
 // if msn_ids does not exist
 if (localStorage.getItem("msn_ids") === null) {
-    // add custom configuration 'custom,330,14' encoded 
-    var msn_ids = [custom_id];
+    var msn_ids = [];
     localStorage.setItem("msn_ids", JSON.stringify(msn_ids));
 } else {
     // open it 
     var msn_ids = JSON.parse(localStorage.getItem("msn_ids"));
 }
 
-// if custom not in msn array ?
+
+// if msn_custom not exist 
+if (localStorage.getItem("msn_custom_id") === null) {
+    // create it
+    var msn_custom_id = default_custom_id;
+    var msn_custom = msnIdDecode(msn_custom_id);
+    localStorage.setItem("msn_custom_id", msn_custom_id);
+} else {
+    // decode it
+    var msn_custom_id = localStorage.getItem("msn_custom_id");
+    var msn_custom = msnIdDecode(msn_custom_id);
+}
+
 
 // if lastkey does not exist
 if (localStorage.getItem("lastkey") === null) {
     // add it as custom to store
-    var lastkey = custom_id;
+    var lastkey = msn_custom_id;
     localStorage.setItem("lastkey", lastkey);
 } else {
     // open it
     var lastkey = localStorage.getItem("lastkey");
 }
 
-// parse ids into msn_data
-// var msn_data = [];
-// for (var i = 0; i < msn_ids.length; ++i) {
-//     // id decode
-//     msn_data.push(msnIdDecode(msn_ids[i]));
-// }
 
 // Check if new data given in url 
 let params = new URLSearchParams(document.location.search);
@@ -55,24 +60,23 @@ if (url_id != null) {
         // store id as lastkey
         var lastkey = url_id;
         localStorage.setItem("lastkey", lastkey);
-
-        // // push new msn decoded into msn_data
-        // msn_data.push(msn_decoded);
     }
 }
 
+
 // add data to dropdown
 // get selector
+var msn_all = msn_ids.concat(msn_custom_id);
 var selectorMSN = document.getElementById("selector-msn");
-for (var i = 0, len = msn_ids.length; i < len; ++i) {
+for (var i = 0, len = msn_all.length; i < len; ++i) {
 
-    if (msn_ids[i] === lastkey) {
-        let data = msnIdDecode(msn_ids[i])
-        let tag = '<option selected="selected" value=' + msn_ids[i] + '>MSN ' + data[0] + '</option>'
+    if (msn_all[i] === lastkey) {
+        let data = msnIdDecode(msn_all[i])
+        let tag = '<option selected="selected" value=' + msn_all[i] + '>MSN ' + data[0] + '</option>'
         selectorMSN.insertAdjacentHTML('beforeend', tag);
     } else {
-        let data = msnIdDecode(msn_ids[i])
-        let tag = '<option value=' + msn_ids[i] + '>MSN ' + data[0] + '</option>'
+        let data = msnIdDecode(msn_all[i])
+        let tag = '<option value=' + msn_all[i] + '>MSN ' + data[0] + '</option>'
         selectorMSN.insertAdjacentHTML('beforeend', tag);
     }
 }
