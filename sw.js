@@ -7,7 +7,7 @@ const assets = [
     './js/ui.js',
     './js/app.js',
     './js/graph.js',
-    './js/db.js',
+    './js/import_db.js',
     './js/render_db.js',
     './js/vendor/wNumb.min.js',
     './js/vendor/nouislider.min.js',
