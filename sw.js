@@ -8,6 +8,7 @@ const assets = [
     './js/app.js',
     './js/graph.js',
     './js/db.js',
+    './js/render_db.js',
     './js/vendor/wNumb.min.js',
     './js/vendor/nouislider.min.js',
     './js/vendor/materialize.min.js',

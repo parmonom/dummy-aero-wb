@@ -1,3 +1,20 @@
+
+// add data to dropdown
+// get selector
+var selectorMSN = document.getElementById("selector-msn");
+for (var i = 0, len = msn_all.length; i < len; ++i) {
+
+    if (msn_all[i] === lastkey) {
+        let data = msnIdDecode(msn_all[i])
+        let tag = '<option selected="selected" value=' + msn_all[i] + '>MSN ' + data[0] + '</option>'
+        selectorMSN.insertAdjacentHTML('beforeend', tag);
+    } else {
+        let data = msnIdDecode(msn_all[i])
+        let tag = '<option value=' + msn_all[i] + '>MSN ' + data[0] + '</option>'
+        selectorMSN.insertAdjacentHTML('beforeend', tag);
+    }
+}
+
 var volumeFormat = wNumb({
     decimals: 0,
     suffix: ' L'
