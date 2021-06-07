@@ -124,6 +124,10 @@ input[type="number"]:not(.browser-default):focus:not([readonly]) {
     border-color: red;
 }
 
+input[type=number]:not(.browser-default):disabled {
+    color: rgb(0, 0, 0);
+}
+
 /* warnings  */
 .warning {
     margin-bottom: 0px;
@@ -170,6 +174,7 @@ input[type=checkbox]:checked:not(:disabled)~.lever:active::before {
 }
 
 
+
 /* despcription */
 
 .description {
@@ -206,12 +211,20 @@ input[type=checkbox]:checked:not(:disabled)~.lever:active::before {
     bottom: 0px;
     right: 0px;
 }
-/* .msn-item-delete img{
-    font-size: 18px;
-} */
+
 .msn-item-title{
     font-weight: bold;
 }
 .msn-item-content{
     font-size: 0.8em;
+}
+
+/* dropdown */
+ul.dropdown-content.select-dropdown li span {
+    color: #000; /* no need for !important :) */
+}
+
+
+.select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid red;
 }

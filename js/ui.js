@@ -4,15 +4,20 @@
 var selectorMSN = document.getElementById("selector-msn");
 for (var i = 0, len = msn_all.length; i < len; ++i) {
 
+    let selectedText = '';
+    let prefixText = 'Dummy ';
+
     if (msn_all[i] === lastkey) {
-        let data = msnIdDecode(msn_all[i])
-        let tag = '<option selected="selected" value=' + msn_all[i] + '>MSN ' + data[0] + '</option>'
-        selectorMSN.insertAdjacentHTML('beforeend', tag);
-    } else {
-        let data = msnIdDecode(msn_all[i])
-        let tag = '<option value=' + msn_all[i] + '>MSN ' + data[0] + '</option>'
-        selectorMSN.insertAdjacentHTML('beforeend', tag);
+        selectedText = 'selected="selected"';
     }
+
+    if (msn_all[i] === msn_custom_id) {
+        prefixText = '';
+    }
+
+    let data = msnIdDecode(msn_all[i]);
+    let html = `<option ${selectedText} value=${msn_all[i]}>${prefixText}${data[0]}</option>`;
+    selectorMSN.insertAdjacentHTML('beforeend', html);
 }
 
 var volumeFormat = wNumb({
