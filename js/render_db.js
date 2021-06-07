@@ -30,7 +30,17 @@ container_msn.addEventListener('click', evt => {
   if (evt.target.tagName === 'IMG') {
     let id = evt.target.getAttribute('data-id')
     item = document.querySelector(`.msn-item[data-id=${id}]`)
-    // console.log(item)
+    
+    // remove from DOM
     item.remove()
+
+    // remove from database
+    var index = msn_ids.indexOf(id);
+    if (index !== -1) {
+      msn_ids.splice(index, 1);
+    }
+
+    // update localstorage
+    localStorage.setItem("msn_ids", JSON.stringify(msn_ids));
   }
 })
