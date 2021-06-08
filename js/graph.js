@@ -117,18 +117,18 @@ var pointZF = svg.append("circle")
 //weight
 const ballastWeight = 6;
 
-// moment
-const ballastFrontMoment = -1466 * ballastWeight;
-const ballastRearMoment = 2094 * ballastWeight;
-
 // arms
 const armFuel = 689; //mm
 const armPilotLight = 369; //mm
 const armPilotHeavy = 416; //mm
 const armPassenger = 1273; //mm
 const armBaggage = 1894; //mm
-const armRearBallast = 2094; //mm
-const armFrontBallast = -1466; //mm
+const armRearBallast = 2267; //mm
+const armFrontBallast = -1403; //mm
+
+// moment
+const ballastFrontMoment = armFrontBallast * ballastWeight;
+const ballastRearMoment = armRearBallast * ballastWeight;
 
 // Default centrage
 const refmac = 114; //mm
