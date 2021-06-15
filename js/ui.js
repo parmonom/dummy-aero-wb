@@ -130,6 +130,11 @@ noUiSlider.create(sliderBaggage, {
     },
 });
 
+// grey rectangle that show the limit for two occupants
+var limiterBoxBaggage = document.createElement('div');
+limiterBoxBaggage.id = "limiter-box-baggage";
+sliderBaggage.appendChild(limiterBoxBaggage);
+
 // FUEL
 noUiSlider.create(sliderFuel, {
     start: [fuelQuantityDefault],
@@ -147,6 +152,11 @@ noUiSlider.create(sliderFuel, {
         density: 7,
     },
 });
+
+// grey rectangle that show the limit for two occupants
+var limiterBoxFuel = document.createElement('div');
+limiterBoxFuel.id = "limiter-box-fuel";
+sliderFuel.appendChild(limiterBoxFuel);
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SELECTOR

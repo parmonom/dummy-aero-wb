@@ -55,11 +55,19 @@ nav .brand-logo {
     margin: 0px;
     margin-left: 0px;
     padding: 0px;
+    position: relative;
+}
+
+.warning-icon {
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    visibility: hidden;
+    /* animation: blinker 0.5s linear infinite; */
 }
 
 
 /* Slider */
-
 .noUi-horizontal {
     height: 10px;
 }
@@ -227,4 +235,28 @@ ul.dropdown-content.select-dropdown li span {
 
 .select-wrapper input.select-dropdown:focus {
     border-bottom: 1px solid red;
+}
+
+#limiter-box-baggage{
+    background: darkgrey;
+    height: 8px;
+    width: 40%;
+    float: right;
+    position: absolute;
+    border-radius: 2px;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+#limiter-box-fuel{
+    background: darkgray;
+    height: 8px;
+    width: 33.333%;
+    float: right;
+    position: absolute;
+    border-radius: 2px;
+    top: 0;
+    right: 0;
+    display: none;
 }

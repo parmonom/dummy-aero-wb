@@ -87,7 +87,9 @@
         <!-- Passenger -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="black-text left"> Passenger
+                <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="black-text left" id="icon-pax">
+                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-pax">
+                Passenger
             </div>
             <div class="col s7 m8" id="slider-element">
                 <div id="slider-passenger"></div>
@@ -101,7 +103,9 @@
         <!-- Baggage -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/luggage-24px.svg" class="black-text left"> Baggage
+                <img src="./img/google-icons/luggage-24px.svg" class="black-text left" id="icon-baggage"> 
+                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-baggage">
+                Baggage
             </div>
             <div class="col s7 m8" id="slider-element">
                 <div id="slider-baggage"></div>
@@ -115,7 +119,9 @@
         <!-- Fuel -->
         <div class="row valign-wrapper" id="weight-element">
             <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/local_gas_station-24px.svg" class="black-text left"> Fuel
+                <img src="./img/google-icons/local_gas_station-24px.svg" class="black-text left" id="icon-fuel">
+                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-fuel">
+                Fuel
             </div>
             <div class="col s7 m8" id="slider-element">
                 <div id="slider-fuel"></div>
@@ -147,20 +153,6 @@
             </div>
         </div>
 
-        <!-- warnings -->
-
-        <div class="row center warning" id="warning-pax" style="display: none">
-            <img src="./img/google-icons/report_problem_black_18dp.svg" class="left">
-            Occupant weight > 200kg
-        </div>
-        <div class="row center warning" id="warning-fuel" style="display: none">
-            <img src="./img/google-icons/report_problem_black_18dp.svg" class="left">
-            Fuel > 100L and 2 occupants
-        </div>
-        <div class="row center warning" id="warning-baggage" style="display: none">
-            <img src="./img/google-icons/report_problem_black_18dp.svg" class="left">
-            Baggage > 15kg and 2 occupants
-        </div>
     </div>
 
     <!-- graph -->
@@ -214,7 +206,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, {edge: 'right'});
+            var instances = M.Sidenav.init(elems, { edge: 'right' });
         });
     </script>
 
