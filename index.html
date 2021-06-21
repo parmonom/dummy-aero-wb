@@ -22,17 +22,14 @@
     <!-- navbar -->
     <header>
         <nav class="nav-wrapper white">
-            <!-- <a href="./index.html">DUMMY.<span>AERO</span></a> -->
-            <div class="container">
-                <a class="brand-logo black-text left">DUMMY.<span>AERO</span> &emsp; Weight and balance</a>
-                <a href="#" class="sidenav-trigger right valign-wrapper" data-target="mobile-links">
-                    <img src="./img/google-icons/menu-24px.svg">
-                </a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="black-text" href="./database.html">Database</a></li>
-                    <li><a class="black-text" href="./about.html">About</a></li>
-                </ul>
-            </div>
+            <a class="brand-logo black-text left">DUMMY.<span>AERO</span> &emsp; Weight and balance</a>
+            <a href="#" class="sidenav-trigger right valign-wrapper" data-target="mobile-links">
+                <img src="./img/google-icons/menu-24px.svg">
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="black-text" href="./database.html">Database</a></li>
+                <li><a class="black-text" href="./about.html">About</a></li>
+            </ul>
         </nav>
         <ul class="sidenav" id="mobile-links">
             <li><a class="black-text" href="./database.html">Database</a></li>
@@ -40,104 +37,97 @@
         </ul>
     </header>
 
-
+    <!-- Input section -->
     <div class="container">
-        <div class="row valign-wrapper" id="weight-element">
-            <div class="col s12">
-                <select id="selector-msn">
-                    <!-- <option value="" disabled selected>Choose your MSN</option> -->
-                </select>
-            </div>
+        <div>
+            <select id="selector-msn"></select>
         </div>
-
         <!-- Empty weight and moment -->
-        <div class="row valign-wrapper" id="weight-element">
-            <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/airplanemode_active-24px.svg" class="black-text left"> Empty weight
+        <div class="row valign-wrapper">
+            <div class="col s6 icons">
+                <img src="./img/google-icons/airplanemode_active-24px.svg" class="standard-icon">Empty weight
             </div>
-            <!-- <div class="col s7 m8" id="slider-element"></div> -->
-            <div class="col s2 m3" id="input-element">
+            <div class="col s3 input-elements">
                 <input class="center" type="number" id="input-empty-weight">
                 <span id="unit">kg</span>
             </div>
-            <div class="col s2 m3 center" id="icon-element">
-                Empty CG
+            <div class="col s4 center">Empty CG
             </div>
-            <div class="col s2 m3" id="input-element">
+            <div class="col s3 input-elements">
                 <input class="center" type="number" id="input-start-cg" step=0.1>
                 <span id="unit">%</span>
             </div>
         </div>
 
         <!-- Pilot -->
-        <div class="row valign-wrapper" id="weight-element">
-            <div class="col s4 m3" id="icon-element">
-
-                <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="black-text left"> Pilot
+        <div class="row valign-wrapper">
+            <div class="col s4 m3 icons">
+                <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="standard-icon">Pilot
             </div>
-            <div class="col s7 m8" id="slider-element">
+            <div class="col s8 m8 slider-element">
                 <div id="slider-pilot"></div>
             </div>
-            <div class="col s2 m2 right-align" id="input-element">
+            <div class="col s2 m2 input-elements">
                 <input class="center" type="number" id="input-pilot">
                 <span id="unit">kg</span>
             </div>
         </div>
 
         <!-- Passenger -->
-        <div class="row valign-wrapper" id="weight-element">
-            <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="black-text left" id="icon-pax">
-                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-pax">
-                Passenger
+        <div class="row valign-wrapper">
+            <div class="col s4 m3 icons">
+                <img src="./img/google-icons/airline_seat_recline_extra-24px.svg" class="standard-icon" id="icon-pax">
+                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon"
+                    id="warning-pax">Passenger
             </div>
-            <div class="col s7 m8" id="slider-element">
+            <div class="col s8 m8 slider-element">
                 <div id="slider-passenger"></div>
             </div>
-            <div class="col s2 m2 right-align" id="input-element">
+            <div class="col s2 m2 input-elements">
                 <input class="center" type="number" id="input-passenger">
                 <span id="unit">kg</span>
             </div>
         </div>
 
         <!-- Baggage -->
-        <div class="row valign-wrapper" id="weight-element">
-            <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/luggage-24px.svg" class="black-text left" id="icon-baggage"> 
-                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-baggage">
-                Baggage
+        <div class="row valign-wrapper">
+            <div class="col s4 m3 icons">
+                <img src="./img/google-icons/luggage-24px.svg" class="standard-icon" id="icon-baggage">
+                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon"
+                    id="warning-baggage">Baggage
             </div>
-            <div class="col s7 m8" id="slider-element">
+            <div class="col s8 m8 slider-element">
                 <div id="slider-baggage"></div>
+                <div id="limiter-box-baggage"></div>
             </div>
-            <div class="col s2 m2 right-align" id="input-element">
+            <div class="col s2 m2 input-elements">
                 <input class="center" type="number" id="input-baggage">
                 <span id="unit">kg</span>
             </div>
         </div>
 
         <!-- Fuel -->
-        <div class="row valign-wrapper" id="weight-element">
-            <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/local_gas_station-24px.svg" class="black-text left" id="icon-fuel">
-                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-fuel">
-                Fuel
+        <div class="row valign-wrapper">
+            <div class="col s4 m3 icons">
+                <img src="./img/google-icons/local_gas_station-24px.svg" class="standard-icon" id="icon-fuel">
+                <img src="./img/google-icons/error_outline_black_24dp.svg" class="warning-icon" id="warning-fuel">Fuel
             </div>
-            <div class="col s7 m8" id="slider-element">
+            <div class="col s8 m8 slider-element">
                 <div id="slider-fuel"></div>
+                <div id="limiter-box-fuel"></div>
             </div>
-            <div class="col s2 m2 right-align" id="input-element">
+            <div class="col s2 m2 input-elements">
                 <input class="center" type="number" id="input-fuel">
                 <span id="unit">L</span>
             </div>
         </div>
 
         <!-- Switch ballast -->
-        <div class="row valign-wrapper" id="weight-element-ballast">
-            <div class="col s4 m3" id="icon-element">
-                <img src="./img/google-icons/ballast-24px.svg" class="black-text left"> Ballast
+        <div class="row valign-wrapper">
+            <div class="col s4 m3 icons">
+                <img src="./img/google-icons/ballast-24px.svg" class="standard-icon">Ballast
             </div>
-            <div class="col s7 m8" id="slider-element">
+            <div class="col s8 m8">
                 <div class="switch">
                     <span id="rear-label-ballast">Rear</span>
                     <label>
@@ -147,51 +137,27 @@
                     <span id="front-label-ballast" style="font-weight: bold; color: black;">Front</span>
                 </div>
             </div>
-            <div class="col s2 m2 right-align" id="input-element">
-                <p style="text-align: center;">6</p>
-                <span id="unit">kg</span>
+            <div class="col s2 m2 input-elements">
+                <p class="value">6</p>
+                <p class="unit">kg</p>
             </div>
         </div>
 
-    </div>
-
-    <!-- graph -->
-    <div class="row center">
-        <!-- Add a svg shape -->
-        <div id="figure_area"></div>
-    </div>
-
-    <!-- output text TO -->
-    <div class="row" id="result-element">
-        <div class="container">
-            <div class="row center">
-                <p class="col s6 " id="weightTO-output"></p>
-                <p class="col s6" id="centerageTO-output"></p>
-            </div>
+        <!-- Result section -->
+        <div class="row center">
+            <div id="figure_area"></div>
         </div>
-    </div>
 
-    <!-- output text ZF -->
-    <div class="row" id="result-element">
-        <div class="container">
-            <div class="row center">
-                <p class="col s6" id="weightZF-output"></p>
-                <p class="col s6" id="centerageZF-output"></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- output text Fuel -->
-    <div class="row" id="result-element">
-        <div class="container">
-            <div class="row center">
-                <p class="col s6" id="fuel-output"></p>
-            </div>
+        <div class="row center text-output">
+            <p class="col s6 " id="weightTO-output"></p>
+            <p class="col s6 " id="centerageTO-output"></p>
+            <p class="col s6 " id="weightZF-output"></p>
+            <p class="col s6 " id="centerageZF-output"></p>
+            <p class="col s6 " id="fuel-output"></p>
         </div>
     </div>
 
     <p class="version left">version 0.1.10</p>
-    </div>
 
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="./js/vendor/materialize.min.js"></script>

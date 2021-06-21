@@ -54,6 +54,9 @@ var sliderPilot = document.getElementById('slider-pilot');
 var sliderPassenger = document.getElementById('slider-passenger');
 var sliderBaggage = document.getElementById('slider-baggage');
 
+var limiterBoxBaggage = document.getElementById('limiter-box-baggage');
+var limiterBoxFuel = document.getElementById('limiter-box-fuel');
+
 // switch
 // 1 front / 0 rear
 var switchBallast = document.getElementById("switch-ballast");
@@ -130,10 +133,6 @@ noUiSlider.create(sliderBaggage, {
     },
 });
 
-// grey rectangle that show the limit for two occupants
-var limiterBoxBaggage = document.createElement('div');
-limiterBoxBaggage.id = "limiter-box-baggage";
-sliderBaggage.appendChild(limiterBoxBaggage);
 
 // FUEL
 noUiSlider.create(sliderFuel, {
@@ -153,10 +152,6 @@ noUiSlider.create(sliderFuel, {
     },
 });
 
-// grey rectangle that show the limit for two occupants
-var limiterBoxFuel = document.createElement('div');
-limiterBoxFuel.id = "limiter-box-fuel";
-sliderFuel.appendChild(limiterBoxFuel);
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ON UPDATE SELECTOR
@@ -289,20 +284,21 @@ inputFuel.addEventListener('change', function () {
 });
 
 // BALLAST
+style = getComputedStyle(document.body)
 switchBallast.addEventListener('change', function () {
     if (switchBallast.checked) {
         switchPosition = 1;
         switchFrontLabel.style.fontWeight = "bold";
         switchFrontLabel.style.color = "black";
         switchRearLabel.style.fontWeight = "normal";
-        switchRearLabel.style.color = "grey";
+        switchRearLabel.style.color = style.getPropertyValue('--third');
         updateFigure()
     } else {
         switchPosition = 0;
         switchRearLabel.style.fontWeight = "bold";
         switchRearLabel.style.color = "black";
         switchFrontLabel.style.fontWeight = "normal";
-        switchFrontLabel.style.color = "grey";
+        switchFrontLabel.style.color = style.getPropertyValue('--third');
         updateFigure()
     }
 });
