@@ -9,7 +9,6 @@ const assets = [
     './js/graph.js',
     './js/import_db.js',
     './js/render_db.js',
-    './js/vendor/wNumb.min.js',
     './js/vendor/nouislider.min.js',
     './js/vendor/materialize.min.js',
     './js/vendor/d3.v6.min.js',

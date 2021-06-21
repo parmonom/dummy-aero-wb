@@ -1,17 +1,4 @@
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// FORMATTERS
-var weightFormat = wNumb({
-    decimals: 0,
-    suffix: ' kg'
-});
-
-var centerageFormat = wNumb({
-    mark: '.',
-    decimals: 1,
-    suffix: ' %'
-});
-
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // FIGURE
 var dataEnvelope = [
     { x: 17.5, y: 385 }, { x: 17.5, y: 600 },
@@ -240,13 +227,13 @@ function updateFigure() {
     var centerageZF = (armZF - refmac) / mac;
 
     // console.log(TOweight);
-    idWeightOutputTO.innerHTML = "Take-off weight: " + weightFormat.to(weightTO);
-    idCenterageOutputTO.innerHTML = "Take-off centerage: " + centerageFormat.to(centerageTO * 100);
+    idWeightOutputTO.innerHTML = "Take-off weight: " + weightTO.toFixed(0) + " kg";
+    idCenterageOutputTO.innerHTML = "Take-off centerage: " + (centerageTO * 100).toFixed(1) + " %";
 
-    idWeightOutputZF.innerHTML = "Zero-fuel weight: " + weightFormat.to(weightZF);
-    idCenterageOutputZF.innerHTML = "Zero-fuel centerage: " + centerageFormat.to(centerageZF * 100);
+    idWeightOutputZF.innerHTML = "Zero-fuel weight: " + weightZF.toFixed(0) + " kg";
+    idCenterageOutputZF.innerHTML = "Zero-fuel centerage: " + (centerageZF * 100).toFixed(1) + " %";
 
-    idWeightFuel.innerHTML = "Fuel weight: " + weightFormat.to(fuelWeight);
+    idWeightFuel.innerHTML = "Fuel weight: " + fuelWeight.toFixed(0) + " kg";
 
     dataResult = [{ x: centerageZF * 100, y: weightZF },
     { x: centerageTO * 100, y: weightTO }];

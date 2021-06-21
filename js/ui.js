@@ -20,10 +20,6 @@ for (var i = 0, len = msn_all.length; i < len; ++i) {
     selectorMSN.insertAdjacentHTML('beforeend', html);
 }
 
-var volumeFormat = wNumb({
-    decimals: 0,
-    suffix: ' L'
-});
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // VAR
 
