@@ -22,17 +22,25 @@
     <!-- navbar -->
     <header>
         <nav class="nav-wrapper white">
-            <div class="container">
-                <a href="./index.html">DUMMY.<span>AERO</span></a>
-            </div>
+            <a href="./index.html" class="brand-logo black-text left">DUMMY.<span>AERO</span> &emsp; Weight and
+                balance</a>
+            <a href="#" class="sidenav-trigger right valign-wrapper" data-target="mobile-links">
+                <img src="./img/google-icons/menu-24px.svg">
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="black-text" href="./database.html">Database</a></li>
+                <li><a class="black-text" href="./about.html">About</a></li>
+            </ul>
         </nav>
+        <ul class="sidenav" id="mobile-links">
+            <li><a class="black-text" href="./database.html">Database</a></li>
+            <li><a class="black-text" href="./about.html">About</a></li>
+        </ul>
     </header>
 
     <div class="container">
-        <p class="description">Dummy AERO is a fake company for demonstration purpose only</p>
-        <p class="description">This app is also fake. It comes without any guarantee</p>
-
-    </div>
+        <p>Dummy AERO is a fake company for demonstration purpose only</p>
+        <p>This app is also fake. It comes without any guarantee</p>
     </div>
 
     <!-- Compiled and minified JavaScript -->
@@ -41,6 +49,12 @@
     <script type="text/javascript" src="./js/vendor/d3.v6.min.js"></script>
 
     <script type="text/javascript" src="./js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, { edge: 'right' });
+        });
+    </script>
 
 </body>
 </htmlx
