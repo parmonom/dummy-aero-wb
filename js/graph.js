@@ -147,6 +147,11 @@ var idIconFuel = document.getElementById('icon-fuel');
 var idLimiterBoxBaggage = document.getElementById('limiter-box-baggage');
 var idLimiterBoxFuel = document.getElementById('limiter-box-fuel');
 
+// id warings
+var idWarningTextPax = document.getElementById('warning-text-pax');
+var idWarningTextBaggage = document.getElementById('warning-text-baggage');
+var idWarningTextFuel = document.getElementById('warning-text-fuel');
+
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // UPDATE FIGURE
 
@@ -163,10 +168,12 @@ function updateFigure() {
     // pax weight > 200kg
     if (pilotWeight + passengerWeight > 200) {
         idWarningPax.style.visibility = "visible"
+        idWarningTextPax.style.display = ""
         idIconPax.style.visibility = "hidden"
     } else {
         idWarningPax.style.visibility = "hidden"
         idIconPax.style.visibility = "visible"
+        idWarningTextPax.style.display = "none"
     }
     // 2 occupants 
     if (passengerWeight > 25) {
@@ -176,17 +183,21 @@ function updateFigure() {
 
         if (fuelVolume > 100) {
             idWarningFuel.style.visibility = "visible"
+            idWarningTextFuel.style.display = ""
             idIconFuel.style.visibility = "hidden"
         } else {
             idWarningFuel.style.visibility = "hidden"
+            idWarningTextFuel.style.display = "none"
             idIconFuel.style.visibility = "visible"
         }
         // baggage > 15l
         if (baggageWeight > 15) {
             idWarningBaggage.style.visibility = "visible"
+            idWarningTextBaggage.style.display = ""
             idIconBaggage.style.visibility = "hidden"
         } else {
             idWarningBaggage.style.visibility = "hidden"
+            idWarningTextBaggage.style.display = "none"
             idIconBaggage.style.visibility = "visible"
         }
 

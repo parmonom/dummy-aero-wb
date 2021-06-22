@@ -182,6 +182,12 @@ input[type=checkbox]:checked:not(:disabled)~.lever:active::before {
     background-color: var(--primary)
 }
 
+/* Warnings */
+.warning {
+    color: red;
+    font-weight: bold;
+    text-align: center;    
+};
 
 /* text-output area */
 .text-output {
