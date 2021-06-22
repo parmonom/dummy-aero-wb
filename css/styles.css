@@ -187,13 +187,12 @@ input[type=checkbox]:checked:not(:disabled)~.lever:active::before {
     color: red;
     font-weight: bold;
     text-align: center;    
-};
+}
 
 /* text-output area */
 .text-output {
     font-weight: bold;
 }
-
 
 /* version */
 .version {
