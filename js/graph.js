@@ -12,7 +12,9 @@ var dataResult = [
 
 const graph_domain = { x_min: 15, x_max: 33, y_min: 350, y_max: 650 };
 const figure_size = { height: 350, x_margin: 40, y_margin: 30 };
-figure_size.width = Math.min(450, Math.max(window.screen.width, 280))
+
+var figure_area = document.getElementById('figure_area');
+figure_size.width = Math.min(450, figure_area.offsetWidth);
 
 // append the svg object to the body of the page
 var svg = d3.select("#figure_area")
